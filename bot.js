@@ -634,7 +634,7 @@ async function acceptConfirmation(offer) {
                     const amountInInventory = inventory.filter(cache => cache.market_hash_name === item.market_hash_name && craftable(cache) === craftable(item)).length
                     if (amountInInventory >= prices[item.market_hash_name].stock) {
                         const bptfListing = backpacktfListingsCache.listings.find(listing => listing.item.name === item.market_hash_name)
-                        if (bptfListing) { backpacktf.deleteListings(bptfListing.id) }
+                        if (bptfListing) { backpacktf.deleteListings([bptfListing.id]) }
                     }
                 } catch (err) {
                     console.error('Could not get inventory to delete potentially overstocked items', err)
