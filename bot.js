@@ -692,6 +692,4 @@ async function craftChange() {
     }
 }
 
-
-
 backpacktf.startHeartbeat()
