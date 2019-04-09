@@ -31,7 +31,7 @@ client.on('ready', async () => {
     console.log(await client.generateInvite())
 })
 
-client.on('error', () => console.error(error))
+client.on('error', console.error)
 
 client.login(process.env.TOKEN)
 
