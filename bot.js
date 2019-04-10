@@ -42,7 +42,6 @@ const bptfSearchRegex = /(The\s|Strange\s|Non-Craftable\s)?(Specialized\s|Profes
 let tradeQueue = []
 
 let inventoryCache
-let backpacktfListingsCache
 let bumpListingTimeout
 let keyPrice
 
@@ -420,7 +419,6 @@ async function bumpListings() {
         backpacktfListings = await backpacktf.getListings({
             intent: 0
         })
-        backpacktfListingsCache = backpacktfListings
     } catch (err) {
         console.error('Unable to get backpack listings during bumpListings()', err)
     }
@@ -437,9 +435,7 @@ async function bumpListings() {
         if (!prices[item].active || inInventory >= prices[item].stock) {
             const itemListing = backpacktfListings.listings.find(listing => listing.item.name === item)
 
-            if (itemListing) {
-                deleteListings.push(itemListing.id)
-            }
+            if (itemListing) { deleteListings.push(itemListing.id) }
 
         } else {
 
@@ -488,7 +484,7 @@ async function bumpListings() {
     }
 
     try {
-        const createdListings = await backpacktf.createListings(bulkListings)
+        await backpacktf.createListings(bulkListings)
     } catch (err) {
         console.error('Error when creating listings in bumpListings()', err)
     }
@@ -606,7 +602,6 @@ async function acceptConfirmation(offer) {
                 setTimeout(acceptConfirmation, 1500, offer)
                 return
             }
-            console.error('Error confirming offer', err)
             return
         }
 
@@ -633,8 +628,15 @@ async function acceptConfirmation(offer) {
                     const inventory = await getInventory()
                     const amountInInventory = inventory.filter(cache => cache.market_hash_name === item.market_hash_name && craftable(cache) === craftable(item)).length
                     if (amountInInventory >= prices[item.market_hash_name].stock) {
-                        const bptfListing = backpacktfListingsCache.listings.find(listing => listing.item.name === item.market_hash_name)
-                        if (bptfListing) { backpacktf.deleteListings([bptfListing.id]) }
+                        const search = Object.assign({
+                            item: item.market_hash_name.replace(bptfSearchRegex, ''),
+                            fold: 1,
+                            steamid: process.env.STEAMID,
+                            intent: 'buy'
+                        }, prices[item.market_hash_name].filters)
+
+                        const { buy: buyListings } = await backpacktf.searchClassifieds(search)
+                        if (buyListings.listings.length) { backpacktf.deleteListings(buyListings.listings[0].id) }
                     }
                 } catch (err) {
                     console.error('Could not get inventory to delete potentially overstocked items', err)
