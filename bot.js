@@ -636,7 +636,13 @@ async function acceptConfirmation(offer) {
                         }, prices[item.market_hash_name].filters)
 
                         const { buy: buyListings } = await backpacktf.searchClassifieds(search)
-                        if (buyListings.listings.length) { backpacktf.deleteListings(buyListings.listings[0].id) }
+                        if (buyListings.listings.length) {
+                            try {
+                                await backpacktf.deleteListings([buyListings.listings[0].id])
+                            } catch (err) {
+                                console.error('Error deleting listing:', err)
+                            }
+                        }
                     }
                 } catch (err) {
                     console.error('Could not get inventory to delete potentially overstocked items', err)

@@ -18,6 +18,6 @@ const search = Object.assign({
 }, prices[item.market_hash_name].filters)
 
 backpacktf.searchClassifieds(search)
-    .then(res => {
-        console.log(res.buy.listings)
+    .then(({buy: buyListings}) => {
+        console.log(buyListings.listings[0].id)
     })
