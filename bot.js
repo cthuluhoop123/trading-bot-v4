@@ -40,8 +40,8 @@ const logOnOptions = {
     twoFactorCode: SteamTotp.generateAuthCode(process.env.SHARED_SECRET)
 }
 
-const bptfListingRegex = /(The\s|Strange\s|Non-Craftable\s)/
-const bptfSearchRegex = /(The\s|Strange\s|Non-Craftable\s)?(Specialized\s|Professional\s)?(Killstreak\s)?/
+const bptfListingRegex = /(The\s|Strange\s|Non-Craftable\s|Genuine\s)/
+const bptfSearchRegex = /(The\s|Strange\s|Non-Craftable\s|Genuine\s)?(Specialized\s|Professional\s)?(Killstreak\s)?/
 
 let tradeQueue = []
 
@@ -182,7 +182,7 @@ manager.on('newOffer', async offer => {
     const itemsToGiveValue = calculatePrice(offer.itemsToGive, 'sell')
     const itemsToReceiveValue = calculatePrice(offer.itemsToReceive, 'buy')
 
-    if (itemsToReceiveValue.keys > itemsToGiveValue.keys && (itemsToReceiveValue.keys * refToScrap(keyPrice) + itemsToReceiveValue.metal) > (itemsToGiveValue.keys * refToScrap(keyPrice) + itemsToGiveValue.metal) || (itemsToReceiveValue.keys === itemsToGiveValue.keys && itemsToReceiveValue.metal >= itemsToGiveValue.metal)) {
+    if ((itemsToReceiveValue.keys * refToScrap(keyPrice) + itemsToReceiveValue.metal) > (itemsToGiveValue.keys * refToScrap(keyPrice) + itemsToGiveValue.metal)) {
         try {
 
             await acceptOffer(offer)
