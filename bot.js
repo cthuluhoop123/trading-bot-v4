@@ -3,6 +3,10 @@ require('dotenv').config()
 const fs = require('fs')
 const decache = require('decache')
 
+const chalk = require('chalk')
+const warn = chalk.keyword('orange')
+const info = chalk.keyword('blue')
+
 const SteamUser = require('steam-user')
 const client = new SteamUser()
 const SteamCommunity = require('steamcommunity')
@@ -75,11 +79,11 @@ tf2.on('itemAcquired', async () => {
 })
 
 tf2.on('craftingComplete', (recipe, itemsGained) => {
-    console.log('Crafted some change...')
+    console.log(info('Crafted some change...'))
 })
 
 client.on('loggedOn', async () => {
-    console.log('Logged in!')
+    console.log(info('Logged in!'))
     client.setPersona(SteamUser.Steam.EPersonaState.Online)
     client.gamesPlayed(440)
 })
@@ -100,7 +104,7 @@ client.on('webSession', (sessionID, cookies) => {
             console.error(err)
             process.exit(1)
         }
-        console.log('Got API key')
+        console.log(info('Got API key'))
 
         try {
             await getInventory()
@@ -151,7 +155,6 @@ manager.on('newOffer', async offer => {
     }
 
     if (offer.isGlitched()) {
-        console.log('Offer is glitched.')
         declineOffer(offer, 'Glitched offer.')
         return
     }
@@ -200,7 +203,7 @@ function acceptOffer(offer) {
         offer.accept((err, status) => {
             if (err) {
                 if (err.message === 'Not Logged In') {
-                    console.log('Tried to accept trade but not logged in...Pushing to trade queue.')
+                    console.log(warn('Tried to accept trade but not logged in...Pushing to trade queue.'))
                     tradeQueue.push({ action: 'accept', offer })
                 }
                 reject(err)
@@ -209,7 +212,7 @@ function acceptOffer(offer) {
 
             acceptConfirmation(offer)
 
-            console.log('Accepted an offer.')
+            console.log(info('Accepted an offer.'))
             inventoryCache = inventoryCache.filter(item => {
                 return offer.itemsToGive.map(give => give.id).includes(item.id) === false
             }).concat(offer.itemsToReceive)
@@ -228,7 +231,7 @@ function declineOffer(offer, reason) {
                 reject(err)
                 return
             }
-            console.log(`Denied an offer.`, reason)
+            console.log(warn(`Denied an offer.`, reason))
             resolve(true)
         })
     })
@@ -291,7 +294,7 @@ function getInventory(fresh = false) {
 }
 
 async function undercutBackpacktf() {
-    console.log('Undercutting backpacktf.')
+    console.log(info('Undercutting backpacktf.'))
 
     decache('./prices.json')
     prices = require('./prices.json')
@@ -380,12 +383,12 @@ async function undercutBackpacktf() {
 
         await sleep(500)
     }
-    console.log('Done undercutting backpacktf.')
+    console.log(info('Done undercutting backpacktf.'))
 }
 
 async function bumpListings() {
 
-    console.log('Bumping listings...')
+    console.log(info('Bumping listings...'))
 
     decache('./prices.json')
     prices = require('./prices.json')
@@ -394,7 +397,7 @@ async function bumpListings() {
     let backpacktfListings
 
     if (!initialPriceMatch) {
-        console.log('Starting initial pricematching.')
+        console.log(info('Starting initial pricematching.'))
         try {
             await undercutBackpacktf()
         } catch (err) {
@@ -489,7 +492,7 @@ async function bumpListings() {
         console.error('Error when creating listings in bumpListings()', err)
     }
 
-    console.log('Bumped listings.')
+    console.log(info('Bumped listings.'))
     undercutBackpacktfTimeout = setTimeout(async () => {
         try {
             await undercutBackpacktf()
@@ -499,33 +502,6 @@ async function bumpListings() {
     }, 1000 * 60 * 30 - Object.keys(pricedItems).length * 1000)
     bumpListingTimeout = setTimeout(bumpListings, 1000 * 60 * 30)
 }
-
-// function composeFromMetal(total, inventory) {
-//     const keys = inventory.filter(item => item.market_hash_name === 'Mann Co. Supply Crate Key')
-//     const refs = inventory.filter(item => item.market_hash_name === 'Refined Metal')
-//     const recs = inventory.filter(item => item.market_hash_name === 'Reclaimed Metal')
-//     const scraps = inventory.filter(item => item.market_hash_name === 'Scrap Metal')
-
-//     const totalMetal = refs.length * 9 + recs.length * 3 + scraps
-
-//     if (keys.length < total.keys || keys.length === total.keys && totalMetal < totalMetal) {
-//         return false
-//     }
-
-//     const keysNeeded = keys.slice(0, total.keys)
-//     let metal = 0
-//     const metalArray = []
-//     for (let refined of refs) {
-//         metal = metal + 9
-//         metalArray.push(refined)
-//         if (total - metal < 9 && recs.length >= (total - metal) / 3 && scraps.length >= total - metal) {
-//             break
-//         }
-//     }
-
-//     for (let reclaimed of recs) {
-//     }
-// }
 
 function getNonCurrencyItems() {
     return Object.keys(prices).filter(item => {
