@@ -93,11 +93,11 @@
     },
     "A Hat to Kill For": {
         "sell": {
-            "metal": 101,
+            "metal": 104,
             "keys": 0
         },
         "buy": {
-            "metal": 100,
+            "metal": 103,
             "keys": 0
         },
         "stock": 1,
@@ -117,7 +117,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 78,
+            "metal": 80,
             "keys": 0
         },
         "stock": 1,
@@ -213,11 +213,11 @@
     },
     "Attack Packs": {
         "sell": {
-            "metal": 88,
+            "metal": 55,
             "keys": 0
         },
         "buy": {
-            "metal": 47,
+            "metal": 34,
             "keys": 0
         },
         "stock": 1,
@@ -313,11 +313,11 @@
     },
     "Batter's Bracers": {
         "sell": {
-            "metal": 99,
+            "metal": 96,
             "keys": 0
         },
         "buy": {
-            "metal": 94,
+            "metal": 95,
             "keys": 0
         },
         "stock": 1,
@@ -333,11 +333,11 @@
     },
     "Blighted Beak": {
         "sell": {
-            "metal": 73,
+            "metal": 71,
             "keys": 0
         },
         "buy": {
-            "metal": 71,
+            "metal": 70,
             "keys": 0
         },
         "stock": 1,
@@ -493,7 +493,7 @@
     },
     "Bunnyhopper's Ballistics Vest": {
         "sell": {
-            "metal": 59,
+            "metal": 58,
             "keys": 0
         },
         "buy": {
@@ -513,7 +513,7 @@
     },
     "Bushi-Dou": {
         "sell": {
-            "metal": 40,
+            "metal": 39,
             "keys": 0
         },
         "buy": {
@@ -553,11 +553,11 @@
     },
     "Captain Space Mann": {
         "sell": {
-            "metal": 70,
+            "metal": 73,
             "keys": 0
         },
         "buy": {
-            "metal": 69,
+            "metal": 72,
             "keys": 0
         },
         "stock": 1,
@@ -677,7 +677,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 333,
+            "metal": 322,
             "keys": 0
         },
         "stock": 1,
@@ -693,7 +693,7 @@
     },
     "Condor Cap": {
         "sell": {
-            "metal": 24,
+            "metal": 23,
             "keys": 0
         },
         "buy": {
@@ -713,11 +713,11 @@
     },
     "Cosa Nostra Cap": {
         "sell": {
-            "metal": 28,
+            "metal": 26,
             "keys": 0
         },
         "buy": {
-            "metal": 24,
+            "metal": 22,
             "keys": 0
         },
         "stock": 1,
@@ -837,7 +837,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 14,
+            "metal": 16,
             "keys": 0
         },
         "stock": 1,
@@ -893,7 +893,7 @@
     },
     "Double Dynamite": {
         "sell": {
-            "metal": 57,
+            "metal": 56,
             "keys": 0
         },
         "buy": {
@@ -913,7 +913,7 @@
     },
     "Dr. Whoa": {
         "sell": {
-            "metal": 12,
+            "metal": 13,
             "keys": 0
         },
         "buy": {
@@ -953,7 +953,7 @@
     },
     "El Muchacho": {
         "sell": {
-            "metal": 14,
+            "metal": 15,
             "keys": 0
         },
         "buy": {
@@ -1013,7 +1013,7 @@
     },
     "Ellis' Cap": {
         "sell": {
-            "metal": 12,
+            "metal": 13,
             "keys": 0
         },
         "buy": {
@@ -1173,11 +1173,11 @@
     },
     "Festive Chargin' Targe": {
         "sell": {
-            "metal": 39,
+            "metal": 40,
             "keys": 0
         },
         "buy": {
-            "metal": 38,
+            "metal": 39,
             "keys": 0
         },
         "stock": 1,
@@ -1193,11 +1193,11 @@
     },
     "Festive Eyelander": {
         "sell": {
-            "metal": 249,
+            "metal": 225,
             "keys": 0
         },
         "buy": {
-            "metal": 99,
+            "metal": 94,
             "keys": 0
         },
         "stock": 1,
@@ -1233,11 +1233,11 @@
     },
     "Festive Frontier Justice": {
         "sell": {
-            "metal": 407,
+            "metal": 348,
             "keys": 0
         },
         "buy": {
-            "metal": 106,
+            "metal": 105,
             "keys": 0
         },
         "stock": 1,
@@ -1253,11 +1253,11 @@
     },
     "Festive Gloves of Running Urgently": {
         "sell": {
-            "metal": 77,
+            "metal": 80,
             "keys": 0
         },
         "buy": {
-            "metal": 76,
+            "metal": 79,
             "keys": 0
         },
         "stock": 1,
@@ -1273,11 +1273,11 @@
     },
     "Festive Revolver": {
         "sell": {
-            "metal": 79,
+            "metal": 78,
             "keys": 0
         },
         "buy": {
-            "metal": 68,
+            "metal": 76,
             "keys": 0
         },
         "stock": 1,
@@ -1313,6 +1313,26 @@
     },
     "Festive Shotgun": {
         "sell": {
+            "metal": 111,
+            "keys": 0
+        },
+        "buy": {
+            "metal": 109,
+            "keys": 0
+        },
+        "stock": 1,
+        "isCurrency": false,
+        "craftable": true,
+        "filters": {
+            "craftable": 1,
+            "quality": 6,
+            "australium": -1,
+            "killstreak_tier": 0
+        },
+        "active": true
+    },
+    "Festive Wrangler": {
+        "sell": {
             "metal": 104,
             "keys": 0
         },
@@ -1331,33 +1351,13 @@
         },
         "active": true
     },
-    "Festive Wrangler": {
-        "sell": {
-            "metal": 116,
-            "keys": 0
-        },
-        "buy": {
-            "metal": 99,
-            "keys": 0
-        },
-        "stock": 1,
-        "isCurrency": false,
-        "craftable": true,
-        "filters": {
-            "craftable": 1,
-            "quality": 6,
-            "australium": -1,
-            "killstreak_tier": 0
-        },
-        "active": true
-    },
     "Festive Wrench": {
         "sell": {
-            "metal": 380,
+            "metal": 377,
             "keys": 0
         },
         "buy": {
-            "metal": 376,
+            "metal": 375,
             "keys": 0
         },
         "stock": 1,
@@ -1393,7 +1393,7 @@
     },
     "Final Frontiersman": {
         "sell": {
-            "metal": 34,
+            "metal": 33,
             "keys": 0
         },
         "buy": {
@@ -1437,7 +1437,7 @@
             "keys": 1
         },
         "buy": {
-            "metal": 71,
+            "metal": 105,
             "keys": 0
         },
         "stock": 1,
@@ -1637,7 +1637,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 18,
+            "metal": 19,
             "keys": 0
         },
         "stock": 1,
@@ -1713,7 +1713,7 @@
     },
     "Herald's Helm": {
         "sell": {
-            "metal": 47,
+            "metal": 46,
             "keys": 0
         },
         "buy": {
@@ -1733,7 +1733,7 @@
     },
     "Hillbilly Speed-Bump": {
         "sell": {
-            "metal": 149,
+            "metal": 120,
             "keys": 0
         },
         "buy": {
@@ -1813,11 +1813,11 @@
     },
     "Industrial Festivizer": {
         "sell": {
-            "metal": 40,
+            "metal": 36,
             "keys": 0
         },
         "buy": {
-            "metal": 39,
+            "metal": 33,
             "keys": 0
         },
         "stock": 1,
@@ -1833,7 +1833,7 @@
     },
     "Jupiter Jetpack": {
         "sell": {
-            "metal": 61,
+            "metal": 60,
             "keys": 0
         },
         "buy": {
@@ -1933,11 +1933,11 @@
     },
     "Lurker's Leathers": {
         "sell": {
-            "metal": 97,
+            "metal": 93,
             "keys": 0
         },
         "buy": {
-            "metal": 96,
+            "metal": 92,
             "keys": 0
         },
         "stock": 1,
@@ -2033,11 +2033,11 @@
     },
     "Mistaken Movember": {
         "sell": {
-            "metal": 92,
+            "metal": 91,
             "keys": 0
         },
         "buy": {
-            "metal": 91,
+            "metal": 90,
             "keys": 0
         },
         "stock": 1,
@@ -2113,7 +2113,7 @@
     },
     "Name Tag": {
         "sell": {
-            "metal": 100,
+            "metal": 99,
             "keys": 0
         },
         "buy": {
@@ -2137,7 +2137,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 12,
+            "metal": 13,
             "keys": 0
         },
         "stock": 1,
@@ -2193,11 +2193,11 @@
     },
     "North Polar Fleece": {
         "sell": {
-            "metal": 90,
+            "metal": 84,
             "keys": 0
         },
         "buy": {
-            "metal": 61,
+            "metal": 83,
             "keys": 0
         },
         "stock": 1,
@@ -2273,11 +2273,11 @@
     },
     "Outta' Sight": {
         "sell": {
-            "metal": 103,
+            "metal": 89,
             "keys": 0
         },
         "buy": {
-            "metal": 102,
+            "metal": 84,
             "keys": 0
         },
         "stock": 1,
@@ -2377,7 +2377,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 31,
+            "metal": 33,
             "keys": 0
         },
         "stock": 1,
@@ -2393,7 +2393,7 @@
     },
     "Pocket Momma": {
         "sell": {
-            "metal": 150,
+            "metal": 87,
             "keys": 0
         },
         "buy": {
@@ -2473,11 +2473,11 @@
     },
     "Pop-eyes": {
         "sell": {
-            "metal": 20,
+            "metal": 21,
             "keys": 0
         },
         "buy": {
-            "metal": 19,
+            "metal": 20,
             "keys": 0
         },
         "stock": 1,
@@ -2633,11 +2633,11 @@
     },
     "Reader's Choice": {
         "sell": {
-            "metal": 31,
+            "metal": 30,
             "keys": 0
         },
         "buy": {
-            "metal": 30,
+            "metal": 29,
             "keys": 0
         },
         "stock": 1,
@@ -2657,7 +2657,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 23,
+            "metal": 24,
             "keys": 0
         },
         "stock": 1,
@@ -2873,11 +2873,11 @@
     },
     "Siberian Tigerstripe": {
         "sell": {
-            "metal": 101,
+            "metal": 124,
             "keys": 0
         },
         "buy": {
-            "metal": 101,
+            "metal": 103,
             "keys": 0
         },
         "stock": 1,
@@ -2893,7 +2893,7 @@
     },
     "Sidekick's Side Slick": {
         "sell": {
-            "metal": 59,
+            "metal": 58,
             "keys": 0
         },
         "buy": {
@@ -2913,7 +2913,7 @@
     },
     "Sight for Sore Eyes": {
         "sell": {
-            "metal": 32,
+            "metal": 31,
             "keys": 0
         },
         "buy": {
@@ -2933,11 +2933,11 @@
     },
     "Sir Hootsalot": {
         "sell": {
-            "metal": 20,
+            "metal": 17,
             "keys": 0
         },
         "buy": {
-            "metal": 19,
+            "metal": 14,
             "keys": 0
         },
         "stock": 1,
@@ -3073,7 +3073,7 @@
     },
     "Spirit of the Bombing Past": {
         "sell": {
-            "metal": 350,
+            "metal": 295,
             "keys": 0
         },
         "buy": {
@@ -3093,7 +3093,7 @@
     },
     "Spooktacles": {
         "sell": {
-            "metal": 82,
+            "metal": 81,
             "keys": 0
         },
         "buy": {
@@ -3133,11 +3133,11 @@
     },
     "Strange Axtinguisher": {
         "sell": {
-            "metal": 46,
+            "metal": 42,
             "keys": 0
         },
         "buy": {
-            "metal": 43,
+            "metal": 41,
             "keys": 0
         },
         "stock": 1,
@@ -3333,11 +3333,11 @@
     },
     "Strange Pithy Professional": {
         "sell": {
-            "metal": 54,
+            "metal": 52,
             "keys": 0
         },
         "buy": {
-            "metal": 53,
+            "metal": 52,
             "keys": 0
         },
         "stock": 1,
@@ -3373,11 +3373,11 @@
     },
     "Strange Scorch Shot": {
         "sell": {
-            "metal": 53,
+            "metal": 49,
             "keys": 0
         },
         "buy": {
-            "metal": 52,
+            "metal": 43,
             "keys": 0
         },
         "stock": 1,
@@ -3433,11 +3433,11 @@
     },
     "Surgeon's Shako": {
         "sell": {
-            "metal": 101,
+            "metal": 98,
             "keys": 0
         },
         "buy": {
-            "metal": 100,
+            "metal": 97,
             "keys": 0
         },
         "stock": 1,
@@ -3533,11 +3533,11 @@
     },
     "Taunt: Fresh Brewed Victory": {
         "sell": {
-            "metal": 93,
+            "metal": 90,
             "keys": 0
         },
         "buy": {
-            "metal": 93,
+            "metal": 89,
             "keys": 0
         },
         "stock": 1,
@@ -3573,11 +3573,11 @@
     },
     "Taunt: I See You": {
         "sell": {
-            "metal": 39,
+            "metal": 36,
             "keys": 0
         },
         "buy": {
-            "metal": 38,
+            "metal": 35,
             "keys": 0
         },
         "stock": 1,
@@ -3593,11 +3593,11 @@
     },
     "Taunt: Oblooterated": {
         "sell": {
-            "metal": 103,
+            "metal": 106,
             "keys": 0
         },
         "buy": {
-            "metal": 103,
+            "metal": 105,
             "keys": 0
         },
         "stock": 1,
@@ -3693,11 +3693,11 @@
     },
     "Texas Ten Gallon": {
         "sell": {
-            "metal": 31,
+            "metal": 23,
             "keys": 0
         },
         "buy": {
-            "metal": 30,
+            "metal": 22,
             "keys": 0
         },
         "stock": 1,
@@ -3733,11 +3733,11 @@
     },
     "The Angel of Death": {
         "sell": {
-            "metal": 31,
+            "metal": 35,
             "keys": 0
         },
         "buy": {
-            "metal": 30,
+            "metal": 32,
             "keys": 0
         },
         "stock": 1,
@@ -3753,11 +3753,11 @@
     },
     "The Anger": {
         "sell": {
-            "metal": 36,
+            "metal": 37,
             "keys": 0
         },
         "buy": {
-            "metal": 32,
+            "metal": 33,
             "keys": 0
         },
         "stock": 1,
@@ -3793,7 +3793,7 @@
     },
     "The Apoco-Fists": {
         "sell": {
-            "metal": 42,
+            "metal": 38,
             "keys": 0
         },
         "buy": {
@@ -3817,7 +3817,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 14,
+            "metal": 15,
             "keys": 0
         },
         "stock": 1,
@@ -3873,11 +3873,11 @@
     },
     "The Bearded Bombardier": {
         "sell": {
-            "metal": 65,
+            "metal": 64,
             "keys": 0
         },
         "buy": {
-            "metal": 59,
+            "metal": 63,
             "keys": 0
         },
         "stock": 1,
@@ -3933,11 +3933,11 @@
     },
     "The Blizzard Breather": {
         "sell": {
-            "metal": 16,
+            "metal": 15,
             "keys": 0
         },
         "buy": {
-            "metal": 15,
+            "metal": 1,
             "keys": 0
         },
         "stock": 1,
@@ -3973,11 +3973,11 @@
     },
     "The Bolt Boy": {
         "sell": {
-            "metal": 92,
+            "metal": 89,
             "keys": 0
         },
         "buy": {
-            "metal": 86,
+            "metal": 83,
             "keys": 0
         },
         "stock": 1,
@@ -4013,7 +4013,7 @@
     },
     "The Breakneck Baggies": {
         "sell": {
-            "metal": 58,
+            "metal": 55,
             "keys": 0
         },
         "buy": {
@@ -4033,7 +4033,7 @@
     },
     "The Brotherhood of Arms": {
         "sell": {
-            "metal": 57,
+            "metal": 56,
             "keys": 0
         },
         "buy": {
@@ -4093,11 +4093,11 @@
     },
     "The Cammy Jammies": {
         "sell": {
-            "metal": 105,
+            "metal": 103,
             "keys": 0
         },
         "buy": {
-            "metal": 103,
+            "metal": 102,
             "keys": 0
         },
         "stock": 1,
@@ -4157,7 +4157,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 60,
+            "metal": 61,
             "keys": 0
         },
         "stock": 1,
@@ -4333,7 +4333,7 @@
     },
     "The Cuban Bristle Crisis": {
         "sell": {
-            "metal": 80,
+            "metal": 79,
             "keys": 0
         },
         "buy": {
@@ -4393,7 +4393,7 @@
     },
     "The Dark Age Defender": {
         "sell": {
-            "metal": 26,
+            "metal": 25,
             "keys": 0
         },
         "buy": {
@@ -4417,7 +4417,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 7,
+            "metal": 34,
             "keys": 0
         },
         "stock": 1,
@@ -4453,11 +4453,11 @@
     },
     "The Dead Little Buddy": {
         "sell": {
-            "metal": 72,
+            "metal": 68,
             "keys": 0
         },
         "buy": {
-            "metal": 66,
+            "metal": 61,
             "keys": 0
         },
         "stock": 1,
@@ -4553,11 +4553,11 @@
     },
     "The Dread Hiding Hood": {
         "sell": {
-            "metal": 17,
+            "metal": 16,
             "keys": 0
         },
         "buy": {
-            "metal": 15,
+            "metal": 14,
             "keys": 0
         },
         "stock": 1,
@@ -4633,11 +4633,11 @@
     },
     "The Eliminators Safeguard": {
         "sell": {
-            "metal": 33,
+            "metal": 28,
             "keys": 0
         },
         "buy": {
-            "metal": 32,
+            "metal": 23,
             "keys": 0
         },
         "stock": 1,
@@ -4673,11 +4673,11 @@
     },
     "The Face of Mercy": {
         "sell": {
-            "metal": 41,
+            "metal": 42,
             "keys": 0
         },
         "buy": {
-            "metal": 39,
+            "metal": 40,
             "keys": 0
         },
         "stock": 1,
@@ -4733,11 +4733,11 @@
     },
     "The Festive Axtinguisher": {
         "sell": {
-            "metal": 52,
+            "metal": 49,
             "keys": 0
         },
         "buy": {
-            "metal": 43,
+            "metal": 42,
             "keys": 0
         },
         "stock": 1,
@@ -4753,11 +4753,11 @@
     },
     "The Festive Backburner": {
         "sell": {
-            "metal": 44,
+            "metal": 50,
             "keys": 0
         },
         "buy": {
-            "metal": 42,
+            "metal": 49,
             "keys": 0
         },
         "stock": 1,
@@ -4973,7 +4973,7 @@
     },
     "The Golden Garment": {
         "sell": {
-            "metal": 16,
+            "metal": 17,
             "keys": 0
         },
         "buy": {
@@ -5053,11 +5053,11 @@
     },
     "The Ham Shank": {
         "sell": {
-            "metal": 12,
+            "metal": 5,
             "keys": 0
         },
         "buy": {
-            "metal": 5,
+            "metal": 4,
             "keys": 0
         },
         "stock": 1,
@@ -5133,11 +5133,11 @@
     },
     "The Heat of Winter": {
         "sell": {
-            "metal": 88,
+            "metal": 89,
             "keys": 0
         },
         "buy": {
-            "metal": 82,
+            "metal": 88,
             "keys": 0
         },
         "stock": 1,
@@ -5173,11 +5173,11 @@
     },
     "The Heavy Lifter": {
         "sell": {
-            "metal": 68,
+            "metal": 70,
             "keys": 0
         },
         "buy": {
-            "metal": 67,
+            "metal": 68,
             "keys": 0
         },
         "stock": 1,
@@ -5197,7 +5197,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 36,
+            "metal": 35,
             "keys": 0
         },
         "stock": 1,
@@ -5337,7 +5337,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 13,
+            "metal": 14,
             "keys": 0
         },
         "stock": 1,
@@ -5417,7 +5417,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 54,
+            "metal": 55,
             "keys": 0
         },
         "stock": 1,
@@ -5551,13 +5551,13 @@
         },
         "active": true
     },
-    "Woolen Warmer": {
+    "The Woolen Warmer": {
         "sell": {
-            "metal": 60,
+            "metal": 61,
             "keys": 0
         },
         "buy": {
-            "metal": 54,
+            "metal": 60,
             "keys": 0
         },
         "stock": 1,
@@ -5573,7 +5573,7 @@
     },
     "Ze Übermensch": {
         "sell": {
-            "metal": 13,
+            "metal": 14,
             "keys": 0
         },
         "buy": {
@@ -5597,7 +5597,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 67,
+            "metal": 13,
             "keys": 0
         },
         "stock": 1,
@@ -5613,7 +5613,7 @@
     },
     "Wanga Prick": {
         "sell": {
-            "metal": 7,
+            "metal": 8,
             "keys": 0
         },
         "buy": {
@@ -5713,11 +5713,11 @@
     },
     "Vitals Vest": {
         "sell": {
-            "metal": 59,
+            "metal": 76,
             "keys": 0
         },
         "buy": {
-            "metal": 58,
+            "metal": 71,
             "keys": 0
         },
         "stock": 1,
@@ -5733,11 +5733,11 @@
     },
     "Wally Pocket": {
         "sell": {
-            "metal": 77,
+            "metal": 73,
             "keys": 0
         },
         "buy": {
-            "metal": 73,
+            "metal": 72,
             "keys": 0
         },
         "stock": 1,
@@ -5753,11 +5753,11 @@
     },
     "Troublemaker's Tossle Cap": {
         "sell": {
-            "metal": 23,
+            "metal": 27,
             "keys": 0
         },
         "buy": {
-            "metal": 21,
+            "metal": 25,
             "keys": 0
         },
         "stock": 1,
@@ -5793,27 +5793,7 @@
     },
     "Arkham Cowl": {
         "sell": {
-            "metal": 143,
-            "keys": 0
-        },
-        "buy": {
-            "metal": 140,
-            "keys": 0
-        },
-        "stock": 1,
-        "isCurrency": false,
-        "craftable": true,
-        "filters": {
-            "craftable": 1,
-            "quality": 6,
-            "australium": -1,
-            "killstreak_tier": 0
-        },
-        "active": true
-    },
-    "Bananades": {
-        "sell": {
-            "metal": 144,
+            "metal": 141,
             "keys": 0
         },
         "buy": {
@@ -5831,13 +5811,33 @@
         },
         "active": true
     },
-    "Big Topper": {
+    "Bananades": {
         "sell": {
-            "metal": 124,
+            "metal": 139,
             "keys": 0
         },
         "buy": {
-            "metal": 117,
+            "metal": 138,
+            "keys": 0
+        },
+        "stock": 1,
+        "isCurrency": false,
+        "craftable": true,
+        "filters": {
+            "craftable": 1,
+            "quality": 6,
+            "australium": -1,
+            "killstreak_tier": 0
+        },
+        "active": true
+    },
+    "Big Topper": {
+        "sell": {
+            "metal": 126,
+            "keys": 0
+        },
+        "buy": {
+            "metal": 124,
             "keys": 0
         },
         "stock": 1,
@@ -5853,11 +5853,11 @@
     },
     "Color No. 216-190-216": {
         "sell": {
-            "metal": 154,
+            "metal": 150,
             "keys": 0
         },
         "buy": {
-            "metal": 153,
+            "metal": 143,
             "keys": 0
         },
         "stock": 1,
@@ -5917,7 +5917,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 81,
+            "metal": 82,
             "keys": 0
         },
         "stock": 1,
@@ -5973,11 +5973,11 @@
     },
     "El Caballero": {
         "sell": {
-            "metal": 126,
+            "metal": 131,
             "keys": 0
         },
         "buy": {
-            "metal": 124,
+            "metal": 129,
             "keys": 0
         },
         "stock": 1,
@@ -6037,7 +6037,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 91,
+            "metal": 92,
             "keys": 0
         },
         "stock": 1,
@@ -6177,7 +6177,7 @@
             "keys": 1
         },
         "buy": {
-            "metal": 61,
+            "metal": 68,
             "keys": 0
         },
         "stock": 1,
@@ -6217,7 +6217,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 116,
+            "metal": 117,
             "keys": 0
         },
         "stock": 1,
@@ -6233,11 +6233,11 @@
     },
     "Pyro's Beanie": {
         "sell": {
-            "metal": 157,
+            "metal": 122,
             "keys": 0
         },
         "buy": {
-            "metal": 122,
+            "metal": 121,
             "keys": 0
         },
         "stock": 1,
@@ -6373,11 +6373,11 @@
     },
     "Taunt: Mannrobics": {
         "sell": {
-            "metal": 14,
+            "metal": 25,
             "keys": 1
         },
         "buy": {
-            "metal": 317,
+            "metal": 292,
             "keys": 0
         },
         "stock": 1,
@@ -6393,11 +6393,11 @@
     },
     "Taunt: Surgeon's Squeezebox": {
         "sell": {
-            "metal": 406,
-            "keys": 0
+            "metal": 45,
+            "keys": 1
         },
         "buy": {
-            "metal": 405,
+            "metal": 406,
             "keys": 0
         },
         "stock": 1,
@@ -6473,11 +6473,11 @@
     },
     "The Little Drummer Mann": {
         "sell": {
-            "metal": 13,
+            "metal": 17,
             "keys": 0
         },
         "buy": {
-            "metal": 13,
+            "metal": 12,
             "keys": 0
         },
         "stock": 1,
@@ -6493,11 +6493,11 @@
     },
     "The Lone Star": {
         "sell": {
-            "metal": 16,
+            "metal": 14,
             "keys": 0
         },
         "buy": {
-            "metal": 15,
+            "metal": 9,
             "keys": 0
         },
         "stock": 1,
@@ -6513,7 +6513,7 @@
     },
     "The Lunatic's Leathers": {
         "sell": {
-            "metal": 26,
+            "metal": 25,
             "keys": 0
         },
         "buy": {
@@ -6537,7 +6537,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 57,
+            "metal": 58,
             "keys": 0
         },
         "stock": 1,
@@ -6573,11 +6573,11 @@
     },
     "The Marxman": {
         "sell": {
-            "metal": 16,
+            "metal": 15,
             "keys": 0
         },
         "buy": {
-            "metal": 13,
+            "metal": 14,
             "keys": 0
         },
         "stock": 1,
@@ -6593,7 +6593,7 @@
     },
     "The Menpo": {
         "sell": {
-            "metal": 27,
+            "metal": 25,
             "keys": 0
         },
         "buy": {
@@ -6617,7 +6617,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 32,
+            "metal": 33,
             "keys": 0
         },
         "stock": 1,
@@ -6653,11 +6653,11 @@
     },
     "The Noh Mercy": {
         "sell": {
-            "metal": 92,
+            "metal": 95,
             "keys": 0
         },
         "buy": {
-            "metal": 91,
+            "metal": 94,
             "keys": 0
         },
         "stock": 1,
@@ -6693,11 +6693,11 @@
     },
     "The Nuke": {
         "sell": {
-            "metal": 58,
+            "metal": 117,
             "keys": 0
         },
         "buy": {
-            "metal": 58,
+            "metal": 80,
             "keys": 0
         },
         "stock": 1,
@@ -6777,7 +6777,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 128,
+            "metal": 129,
             "keys": 0
         },
         "stock": 1,
@@ -6857,7 +6857,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 15,
+            "metal": 14,
             "keys": 0
         },
         "stock": 1,
@@ -6873,11 +6873,11 @@
     },
     "The Rat Stompers": {
         "sell": {
-            "metal": 14,
+            "metal": 13,
             "keys": 0
         },
         "buy": {
-            "metal": 13,
+            "metal": 11,
             "keys": 0
         },
         "stock": 1,
@@ -6973,11 +6973,11 @@
     },
     "The Salty Dog": {
         "sell": {
-            "metal": 13,
+            "metal": 15,
             "keys": 0
         },
         "buy": {
-            "metal": 11,
+            "metal": 13,
             "keys": 0
         },
         "stock": 1,
@@ -7053,11 +7053,11 @@
     },
     "The Self-Aware Beauty Mark": {
         "sell": {
-            "metal": 134,
+            "metal": 133,
             "keys": 0
         },
         "buy": {
-            "metal": 133,
+            "metal": 132,
             "keys": 0
         },
         "stock": 1,
@@ -7093,11 +7093,11 @@
     },
     "The Shellmet": {
         "sell": {
-            "metal": 63,
+            "metal": 62,
             "keys": 0
         },
         "buy": {
-            "metal": 62,
+            "metal": 61,
             "keys": 0
         },
         "stock": 1,
@@ -7153,7 +7153,7 @@
     },
     "The Sky Captain": {
         "sell": {
-            "metal": 13,
+            "metal": 14,
             "keys": 0
         },
         "buy": {
@@ -7173,12 +7173,12 @@
     },
     "The Snack Attack": {
         "sell": {
-            "metal": 42,
+            "metal": 1,
             "keys": 1
         },
         "buy": {
-            "metal": 356,
-            "keys": 0
+            "metal": 0,
+            "keys": 1
         },
         "stock": 1,
         "isCurrency": false,
@@ -7233,11 +7233,11 @@
     },
     "The Space Diver": {
         "sell": {
-            "metal": 57,
+            "metal": 75,
             "keys": 0
         },
         "buy": {
-            "metal": 57,
+            "metal": 64,
             "keys": 0
         },
         "stock": 1,
@@ -7277,7 +7277,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 52,
+            "metal": 54,
             "keys": 0
         },
         "stock": 1,
@@ -7293,11 +7293,11 @@
     },
     "The Sub Zero Suit": {
         "sell": {
-            "metal": 98,
+            "metal": 106,
             "keys": 0
         },
         "buy": {
-            "metal": 96,
+            "metal": 99,
             "keys": 0
         },
         "stock": 1,
@@ -7433,11 +7433,11 @@
     },
     "The Triggerman's Tacticals": {
         "sell": {
-            "metal": 37,
+            "metal": 34,
             "keys": 0
         },
         "buy": {
-            "metal": 31,
+            "metal": 33,
             "keys": 0
         },
         "stock": 1,
@@ -7453,11 +7453,11 @@
     },
     "The Tuxxy": {
         "sell": {
-            "metal": 16,
+            "metal": 43,
             "keys": 0
         },
         "buy": {
-            "metal": 13,
+            "metal": 20,
             "keys": 0
         },
         "stock": 1,
@@ -7597,7 +7597,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 77,
+            "metal": 83,
             "keys": 0
         },
         "stock": 1,
@@ -7693,7 +7693,7 @@
     },
     "The Wraith Wrap": {
         "sell": {
-            "metal": 14,
+            "metal": 13,
             "keys": 0
         },
         "buy": {
@@ -7833,11 +7833,11 @@
     },
     "A Mann's Mint": {
         "sell": {
-            "metal": 90,
+            "metal": 89,
             "keys": 1
         },
         "buy": {
-            "metal": 383,
+            "metal": 394,
             "keys": 0
         },
         "stock": 1,
@@ -7857,7 +7857,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 206,
+            "metal": 207,
             "keys": 0
         },
         "stock": 1,
@@ -7893,11 +7893,11 @@
     },
     "Archimedes the Undying": {
         "sell": {
-            "metal": 275,
+            "metal": 295,
             "keys": 1
         },
         "buy": {
-            "metal": 274,
+            "metal": 294,
             "keys": 1
         },
         "stock": 1,
@@ -7993,11 +7993,11 @@
     },
     "Bill's Hat": {
         "sell": {
-            "metal": 374,
+            "metal": 382,
             "keys": 1
         },
         "buy": {
-            "metal": 368,
+            "metal": 369,
             "keys": 1
         },
         "stock": 1,
@@ -8033,11 +8033,11 @@
     },
     "Bruce's Bonnet": {
         "sell": {
-            "metal": 342,
+            "metal": 326,
             "keys": 0
         },
         "buy": {
-            "metal": 321,
+            "metal": 325,
             "keys": 0
         },
         "stock": 1,
@@ -8073,11 +8073,11 @@
     },
     "Bushman's Bristles": {
         "sell": {
-            "metal": 24,
+            "metal": 20,
             "keys": 1
         },
         "buy": {
-            "metal": 13,
+            "metal": 18,
             "keys": 1
         },
         "stock": 1,
@@ -8133,7 +8133,7 @@
     },
     "Cold Snap Coat": {
         "sell": {
-            "metal": 332,
+            "metal": 329,
             "keys": 0
         },
         "buy": {
@@ -8173,11 +8173,11 @@
     },
     "Dad Duds": {
         "sell": {
-            "metal": 326,
+            "metal": 253,
             "keys": 1
         },
         "buy": {
-            "metal": 108,
+            "metal": 115,
             "keys": 1
         },
         "stock": 1,
@@ -8193,11 +8193,11 @@
     },
     "Down Under Duster": {
         "sell": {
-            "metal": 326,
+            "metal": 269,
             "keys": 0
         },
         "buy": {
-            "metal": 267,
+            "metal": 268,
             "keys": 0
         },
         "stock": 1,
@@ -8233,11 +8233,11 @@
     },
     "El Duderino": {
         "sell": {
-            "metal": 309,
+            "metal": 313,
             "keys": 1
         },
         "buy": {
-            "metal": 149,
+            "metal": 167,
             "keys": 1
         },
         "stock": 1,
@@ -8253,11 +8253,11 @@
     },
     "Festive Crusader's Crossbow": {
         "sell": {
-            "metal": 250,
+            "metal": 256,
             "keys": 0
         },
         "buy": {
-            "metal": 241,
+            "metal": 251,
             "keys": 0
         },
         "stock": 1,
@@ -8333,11 +8333,11 @@
     },
     "Festive Medi Gun": {
         "sell": {
-            "metal": 360,
+            "metal": 356,
             "keys": 0
         },
         "buy": {
-            "metal": 260,
+            "metal": 311,
             "keys": 0
         },
         "stock": 1,
@@ -8373,11 +8373,11 @@
     },
     "Festive Rocket Launcher": {
         "sell": {
-            "metal": 55,
-            "keys": 1
+            "metal": 395,
+            "keys": 0
         },
         "buy": {
-            "metal": 397,
+            "metal": 390,
             "keys": 0
         },
         "stock": 1,
@@ -8393,7 +8393,7 @@
     },
     "Festive Sapper": {
         "sell": {
-            "metal": 176,
+            "metal": 175,
             "keys": 0
         },
         "buy": {
@@ -8413,11 +8413,11 @@
     },
     "Festive Stickybomb Launcher": {
         "sell": {
-            "metal": 235,
+            "metal": 233,
             "keys": 0
         },
         "buy": {
-            "metal": 191,
+            "metal": 179,
             "keys": 0
         },
         "stock": 1,
@@ -8433,11 +8433,11 @@
     },
     "Flash of Inspiration": {
         "sell": {
-            "metal": 132,
+            "metal": 124,
             "keys": 1
         },
         "buy": {
-            "metal": 127,
+            "metal": 123,
             "keys": 1
         },
         "stock": 1,
@@ -8493,11 +8493,11 @@
     },
     "Heavy Tourism": {
         "sell": {
-            "metal": 210,
+            "metal": 222,
             "keys": 0
         },
         "buy": {
-            "metal": 209,
+            "metal": 210,
             "keys": 0
         },
         "stock": 1,
@@ -8513,11 +8513,11 @@
     },
     "Holstered Heaters": {
         "sell": {
-            "metal": 142,
+            "metal": 82,
             "keys": 1
         },
         "buy": {
-            "metal": 87,
+            "metal": 63,
             "keys": 1
         },
         "stock": 1,
@@ -8533,11 +8533,11 @@
     },
     "Iron Lung": {
         "sell": {
-            "metal": 237,
+            "metal": 230,
             "keys": 0
         },
         "buy": {
-            "metal": 236,
+            "metal": 229,
             "keys": 0
         },
         "stock": 1,
@@ -8549,7 +8549,7 @@
             "australium": -1,
             "killstreak_tier": 0
         },
-        "active": false
+        "active": true
     },
     "Ivan The Inedible": {
         "sell": {
@@ -8573,11 +8573,11 @@
     },
     "Jungle Wreath": {
         "sell": {
-            "metal": 188,
+            "metal": 197,
             "keys": 0
         },
         "buy": {
-            "metal": 186,
+            "metal": 195,
             "keys": 0
         },
         "stock": 1,
@@ -8593,11 +8593,11 @@
     },
     "Marksman's Mohair": {
         "sell": {
-            "metal": 390,
+            "metal": 408,
             "keys": 0
         },
         "buy": {
-            "metal": 387,
+            "metal": 402,
             "keys": 0
         },
         "stock": 1,
@@ -8633,11 +8633,11 @@
     },
     "Mo'Horn": {
         "sell": {
-            "metal": 212,
+            "metal": 218,
             "keys": 0
         },
         "buy": {
-            "metal": 178,
+            "metal": 206,
             "keys": 0
         },
         "stock": 1,
@@ -8653,11 +8653,11 @@
     },
     "Mountebank's Masque": {
         "sell": {
-            "metal": 193,
+            "metal": 204,
             "keys": 0
         },
         "buy": {
-            "metal": 192,
+            "metal": 180,
             "keys": 0
         },
         "stock": 1,
@@ -8693,11 +8693,11 @@
     },
     "Mr. Mundee's Wild Ride": {
         "sell": {
-            "metal": 137,
+            "metal": 128,
             "keys": 1
         },
         "buy": {
-            "metal": 99,
+            "metal": 23,
             "keys": 1
         },
         "stock": 1,
@@ -8729,7 +8729,7 @@
             "australium": -1,
             "killstreak_tier": 0
         },
-        "active": true
+        "active": false
     },
     "Old Man Frost": {
         "sell": {
@@ -8757,7 +8757,7 @@
             "keys": 1
         },
         "buy": {
-            "metal": 369,
+            "metal": 382,
             "keys": 0
         },
         "stock": 1,
@@ -8773,11 +8773,11 @@
     },
     "Pestering Jester": {
         "sell": {
-            "metal": 195,
+            "metal": 194,
             "keys": 0
         },
         "buy": {
-            "metal": 191,
+            "metal": 193,
             "keys": 0
         },
         "stock": 1,
@@ -8793,11 +8793,11 @@
     },
     "Plumber's Cap": {
         "sell": {
-            "metal": 29,
+            "metal": 23,
             "keys": 1
         },
         "buy": {
-            "metal": 18,
+            "metal": 10,
             "keys": 1
         },
         "stock": 1,
@@ -8813,11 +8813,11 @@
     },
     "Poacher's Safari Jacket": {
         "sell": {
-            "metal": 274,
+            "metal": 271,
             "keys": 0
         },
         "buy": {
-            "metal": 271,
+            "metal": 270,
             "keys": 0
         },
         "stock": 1,
@@ -8873,11 +8873,11 @@
     },
     "Professional's Ushanka": {
         "sell": {
-            "metal": 298,
+            "metal": 289,
             "keys": 0
         },
         "buy": {
-            "metal": 279,
+            "metal": 226,
             "keys": 0
         },
         "stock": 1,
@@ -8893,11 +8893,11 @@
     },
     "Pyro the Flamedeer": {
         "sell": {
-            "metal": 50,
+            "metal": 41,
             "keys": 1
         },
         "buy": {
-            "metal": 30,
+            "metal": 40,
             "keys": 1
         },
         "stock": 1,
@@ -8913,11 +8913,11 @@
     },
     "Pyromancer's Raiments": {
         "sell": {
-            "metal": 353,
+            "metal": 324,
             "keys": 0
         },
         "buy": {
-            "metal": 324,
+            "metal": 323,
             "keys": 0
         },
         "stock": 1,
@@ -9013,11 +9013,11 @@
     },
     "Sheriff's Stetson": {
         "sell": {
-            "metal": 370,
+            "metal": 387,
             "keys": 0
         },
         "buy": {
-            "metal": 365,
+            "metal": 364,
             "keys": 0
         },
         "stock": 1,
@@ -9037,7 +9037,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 198,
+            "metal": 201,
             "keys": 0
         },
         "stock": 1,
@@ -9053,11 +9053,11 @@
     },
     "Skullcap": {
         "sell": {
-            "metal": 323,
+            "metal": 330,
             "keys": 0
         },
         "buy": {
-            "metal": 317,
+            "metal": 242,
             "keys": 0
         },
         "stock": 1,
@@ -9093,11 +9093,11 @@
     },
     "Starduster": {
         "sell": {
-            "metal": 24,
+            "metal": 13,
             "keys": 2
         },
         "buy": {
-            "metal": 178,
+            "metal": 209,
             "keys": 1
         },
         "stock": 1,
@@ -9113,11 +9113,11 @@
     },
     "Stealthy Scarf": {
         "sell": {
-            "metal": 267,
+            "metal": 234,
             "keys": 0
         },
         "buy": {
-            "metal": 180,
+            "metal": 225,
             "keys": 0
         },
         "stock": 1,
@@ -9197,7 +9197,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 52,
+            "metal": 62,
             "keys": 0
         },
         "stock": 1,
@@ -9233,11 +9233,11 @@
     },
     "Strange Fan O'War": {
         "sell": {
-            "metal": 203,
+            "metal": 197,
             "keys": 0
         },
         "buy": {
-            "metal": 202,
+            "metal": 192,
             "keys": 0
         },
         "stock": 1,
@@ -9793,11 +9793,11 @@
     },
     "Summer Shades": {
         "sell": {
-            "metal": 140,
+            "metal": 152,
             "keys": 0
         },
         "buy": {
-            "metal": 139,
+            "metal": 151,
             "keys": 0
         },
         "stock": 1,
@@ -9873,11 +9873,11 @@
     },
     "Taunt: Didgeridrongo": {
         "sell": {
-            "metal": 264,
+            "metal": 290,
             "keys": 0
         },
         "buy": {
-            "metal": 251,
+            "metal": 276,
             "keys": 0
         },
         "stock": 1,
@@ -9893,11 +9893,11 @@
     },
     "Taunt: Disco Fever": {
         "sell": {
-            "metal": 182,
+            "metal": 199,
             "keys": 0
         },
         "buy": {
-            "metal": 180,
+            "metal": 198,
             "keys": 0
         },
         "stock": 1,
@@ -9913,11 +9913,11 @@
     },
     "Taunt: Flippin' Awesome": {
         "sell": {
-            "metal": 153,
+            "metal": 197,
             "keys": 0
         },
         "buy": {
-            "metal": 151,
+            "metal": 162,
             "keys": 0
         },
         "stock": 1,
@@ -9953,11 +9953,11 @@
     },
     "Taunt: Luxury Lounge": {
         "sell": {
-            "metal": 279,
+            "metal": 294,
             "keys": 0
         },
         "buy": {
-            "metal": 273,
+            "metal": 280,
             "keys": 0
         },
         "stock": 1,
@@ -10013,7 +10013,7 @@
     },
     "Taunt: Rock, Paper, Scissors": {
         "sell": {
-            "metal": 222,
+            "metal": 221,
             "keys": 0
         },
         "buy": {
@@ -10057,7 +10057,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 312,
+            "metal": 311,
             "keys": 0
         },
         "stock": 1,
@@ -10093,11 +10093,11 @@
     },
     "Taunt: Skullcracker": {
         "sell": {
-            "metal": 136,
+            "metal": 153,
             "keys": 0
         },
         "buy": {
-            "metal": 134,
+            "metal": 141,
             "keys": 0
         },
         "stock": 1,
@@ -10113,11 +10113,11 @@
     },
     "Taunt: Soldier's Requiem": {
         "sell": {
-            "metal": 379,
+            "metal": 378,
             "keys": 0
         },
         "buy": {
-            "metal": 378,
+            "metal": 366,
             "keys": 0
         },
         "stock": 1,
@@ -10173,11 +10173,11 @@
     },
     "Taunt: The Box Trot": {
         "sell": {
-            "metal": 263,
+            "metal": 252,
             "keys": 0
         },
         "buy": {
-            "metal": 257,
+            "metal": 250,
             "keys": 0
         },
         "stock": 1,
@@ -10193,11 +10193,11 @@
     },
     "Taunt: The Bunnyhopper": {
         "sell": {
-            "metal": 387,
+            "metal": 383,
             "keys": 0
         },
         "buy": {
-            "metal": 343,
+            "metal": 364,
             "keys": 0
         },
         "stock": 1,
@@ -10217,7 +10217,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 64,
+            "metal": 11,
             "keys": 0
         },
         "stock": 1,
@@ -10237,7 +10237,7 @@
             "keys": 1
         },
         "buy": {
-            "metal": 17,
+            "metal": 21,
             "keys": 1
         },
         "stock": 1,
@@ -10297,7 +10297,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 230,
+            "metal": 229,
             "keys": 0
         },
         "stock": 1,
@@ -10313,7 +10313,7 @@
     },
     "Taunt: The Jumping Jack": {
         "sell": {
-            "metal": 366,
+            "metal": 367,
             "keys": 0
         },
         "buy": {
@@ -10333,11 +10333,11 @@
     },
     "Taunt: The Killer Solo": {
         "sell": {
-            "metal": 352,
+            "metal": 344,
             "keys": 0
         },
         "buy": {
-            "metal": 344,
+            "metal": 343,
             "keys": 0
         },
         "stock": 1,
@@ -10373,11 +10373,11 @@
     },
     "Taunt: The Russian Arms Race": {
         "sell": {
-            "metal": 402,
+            "metal": 361,
             "keys": 0
         },
         "buy": {
-            "metal": 375,
+            "metal": 359,
             "keys": 0
         },
         "stock": 1,
@@ -10393,11 +10393,11 @@
     },
     "Taunt: The Schadenfreude": {
         "sell": {
-            "metal": 405,
+            "metal": 384,
             "keys": 0
         },
         "buy": {
-            "metal": 384,
+            "metal": 383,
             "keys": 0
         },
         "stock": 1,
@@ -10413,11 +10413,11 @@
     },
     "Taunt: The Skating Scorcher": {
         "sell": {
-            "metal": 41,
+            "metal": 32,
             "keys": 1
         },
         "buy": {
-            "metal": 26,
+            "metal": 29,
             "keys": 1
         },
         "stock": 1,
@@ -10433,11 +10433,11 @@
     },
     "Taunt: The Soviet Strongarm": {
         "sell": {
-            "metal": 393,
-            "keys": 0
+            "metal": 8,
+            "keys": 1
         },
         "buy": {
-            "metal": 371,
+            "metal": 392,
             "keys": 0
         },
         "stock": 1,
@@ -10457,8 +10457,8 @@
             "keys": 1
         },
         "buy": {
-            "metal": 411,
-            "keys": 0
+            "metal": 2,
+            "keys": 1
         },
         "stock": 1,
         "isCurrency": false,
@@ -10513,11 +10513,11 @@
     },
     "Taunt: Yeti Smash": {
         "sell": {
-            "metal": 353,
+            "metal": 361,
             "keys": 0
         },
         "buy": {
-            "metal": 352,
+            "metal": 360,
             "keys": 0
         },
         "stock": 1,
@@ -10533,11 +10533,11 @@
     },
     "Taunt: Zoomin' Broom": {
         "sell": {
-            "metal": 89,
-            "keys": 2
+            "metal": 321,
+            "keys": 1
         },
         "buy": {
-            "metal": 242,
+            "metal": 204,
             "keys": 1
         },
         "stock": 1,
@@ -10717,7 +10717,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 295,
+            "metal": 298,
             "keys": 0
         },
         "stock": 1,
@@ -10733,11 +10733,11 @@
     },
     "The Bread Bite": {
         "sell": {
-            "metal": 279,
+            "metal": 246,
             "keys": 0
         },
         "buy": {
-            "metal": 156,
+            "metal": 166,
             "keys": 0
         },
         "stock": 1,
@@ -10773,11 +10773,11 @@
     },
     "The Byte'd Beak": {
         "sell": {
-            "metal": 403,
+            "metal": 401,
             "keys": 0
         },
         "buy": {
-            "metal": 401,
+            "metal": 400,
             "keys": 0
         },
         "stock": 1,
@@ -10873,11 +10873,11 @@
     },
     "The Cryptic Keepsake": {
         "sell": {
-            "metal": 255,
+            "metal": 256,
             "keys": 1
         },
         "buy": {
-            "metal": 254,
+            "metal": 255,
             "keys": 1
         },
         "stock": 1,
@@ -10893,11 +10893,11 @@
     },
     "The Dark Helm": {
         "sell": {
-            "metal": 100,
+            "metal": 54,
             "keys": 1
         },
         "buy": {
-            "metal": 40,
+            "metal": 53,
             "keys": 1
         },
         "stock": 1,
@@ -10993,11 +10993,11 @@
     },
     "The Face Plante": {
         "sell": {
-            "metal": 236,
+            "metal": 275,
             "keys": 0
         },
         "buy": {
-            "metal": 235,
+            "metal": 242,
             "keys": 0
         },
         "stock": 1,
@@ -11053,11 +11053,11 @@
     },
     "The Festive Huntsman": {
         "sell": {
-            "metal": 326,
+            "metal": 221,
             "keys": 0
         },
         "buy": {
-            "metal": 242,
+            "metal": 185,
             "keys": 0
         },
         "stock": 1,
@@ -11073,7 +11073,7 @@
     },
     "The Festive Sandvich": {
         "sell": {
-            "metal": 314,
+            "metal": 271,
             "keys": 0
         },
         "buy": {
@@ -11093,11 +11093,11 @@
     },
     "The Festive Ubersaw": {
         "sell": {
-            "metal": 106,
+            "metal": 107,
             "keys": 0
         },
         "buy": {
-            "metal": 103,
+            "metal": 106,
             "keys": 0
         },
         "stock": 1,
@@ -11113,7 +11113,7 @@
     },
     "The Filamental": {
         "sell": {
-            "metal": 337,
+            "metal": 338,
             "keys": 0
         },
         "buy": {
@@ -11137,7 +11137,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 262,
+            "metal": 288,
             "keys": 0
         },
         "stock": 1,
@@ -11193,11 +11193,11 @@
     },
     "The Gift Bringer": {
         "sell": {
-            "metal": 271,
+            "metal": 255,
             "keys": 0
         },
         "buy": {
-            "metal": 251,
+            "metal": 254,
             "keys": 0
         },
         "stock": 1,
@@ -11233,11 +11233,11 @@
     },
     "The Grand Duchess Tiara": {
         "sell": {
-            "metal": 370,
+            "metal": 323,
             "keys": 0
         },
         "buy": {
-            "metal": 309,
+            "metal": 318,
             "keys": 0
         },
         "stock": 1,
@@ -11353,11 +11353,11 @@
     },
     "The Hood of Sorrows": {
         "sell": {
-            "metal": 108,
+            "metal": 170,
             "keys": 1
         },
         "buy": {
-            "metal": 100,
+            "metal": 115,
             "keys": 1
         },
         "stock": 1,
@@ -11453,11 +11453,11 @@
     },
     "The Last Bite": {
         "sell": {
-            "metal": 209,
+            "metal": 229,
             "keys": 0
         },
         "buy": {
-            "metal": 208,
+            "metal": 226,
             "keys": 0
         },
         "stock": 1,
@@ -11493,11 +11493,11 @@
     },
     "The Lightning Lid": {
         "sell": {
-            "metal": 259,
+            "metal": 268,
             "keys": 0
         },
         "buy": {
-            "metal": 258,
+            "metal": 259,
             "keys": 0
         },
         "stock": 1,
@@ -11513,11 +11513,11 @@
     },
     "The Lone Survivor": {
         "sell": {
-            "metal": 5,
-            "keys": 1
+            "metal": 405,
+            "keys": 0
         },
         "buy": {
-            "metal": 385,
+            "metal": 309,
             "keys": 0
         },
         "stock": 1,
@@ -11533,11 +11533,11 @@
     },
     "The Lurking Legionnaire": {
         "sell": {
-            "metal": 256,
+            "metal": 221,
             "keys": 0
         },
         "buy": {
-            "metal": 217,
+            "metal": 220,
             "keys": 0
         },
         "stock": 1,
@@ -11633,11 +11633,11 @@
     },
     "The Mishap Mercenary": {
         "sell": {
-            "metal": 185,
+            "metal": 179,
             "keys": 0
         },
         "buy": {
-            "metal": 181,
+            "metal": 172,
             "keys": 0
         },
         "stock": 1,
@@ -11773,11 +11773,11 @@
     },
     "The Sack Fulla Smissmas": {
         "sell": {
-            "metal": 145,
+            "metal": 141,
             "keys": 1
         },
         "buy": {
-            "metal": 141,
+            "metal": 140,
             "keys": 1
         },
         "stock": 1,
@@ -11813,12 +11813,12 @@
     },
     "The Shooting Star": {
         "sell": {
-            "metal": 24,
+            "metal": 20,
             "keys": 1
         },
         "buy": {
-            "metal": 23,
-            "keys": 1
+            "metal": 372,
+            "keys": 0
         },
         "stock": 1,
         "isCurrency": false,
@@ -11833,11 +11833,11 @@
     },
     "The Shred Alert": {
         "sell": {
-            "metal": 355,
+            "metal": 352,
             "keys": 0
         },
         "buy": {
-            "metal": 352,
+            "metal": 351,
             "keys": 0
         },
         "stock": 1,
@@ -11893,11 +11893,11 @@
     },
     "The Unshaved Bear": {
         "sell": {
-            "metal": 374,
+            "metal": 361,
             "keys": 0
         },
         "buy": {
-            "metal": 361,
+            "metal": 360,
             "keys": 0
         },
         "stock": 1,
@@ -11913,11 +11913,11 @@
     },
     "The War Eagle": {
         "sell": {
-            "metal": 252,
+            "metal": 248,
             "keys": 0
         },
         "buy": {
-            "metal": 248,
+            "metal": 247,
             "keys": 0
         },
         "stock": 1,
@@ -11973,7 +11973,7 @@
     },
     "Thermal Insulation Layer": {
         "sell": {
-            "metal": 345,
+            "metal": 326,
             "keys": 0
         },
         "buy": {
@@ -12033,11 +12033,11 @@
     },
     "Torcher's Tabard": {
         "sell": {
-            "metal": 191,
+            "metal": 175,
             "keys": 0
         },
         "buy": {
-            "metal": 171,
+            "metal": 174,
             "keys": 0
         },
         "stock": 1,
@@ -12057,7 +12057,7 @@
             "keys": 0
         },
         "buy": {
-            "metal": 190,
+            "metal": 192,
             "keys": 0
         },
         "stock": 1,

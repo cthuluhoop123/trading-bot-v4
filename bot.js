@@ -40,8 +40,8 @@ const logOnOptions = {
     twoFactorCode: SteamTotp.generateAuthCode(process.env.SHARED_SECRET)
 }
 
-const bptfListingRegex = /(The\s|Strange\s|Non-Craftable\s|Genuine\s)/
-const bptfSearchRegex = /(The\s|Strange\s|Non-Craftable\s\Genuine\s)?(Specialized\s|Professional\s)?(Killstreak\s)?/
+const bptfListingRegex = /^(The\s|Strange\s|Non-Craftable\s|Genuine\s)/
+const bptfSearchRegex = /^(The\s|Strange\s|Non-Craftable\s\Genuine\s)?(Specialized\s|Professional\s)?(Killstreak\s)?/
 
 let tradeQueue = []
 

@@ -1,23 +1,19 @@
-require('dotenv').config()
+// require('dotenv').config()
 
-const item = {
-    market_hash_name: 'Strange Ambassador'
-}
-const bptfSearchRegex = /(The\s|Strange\s|Non-Craftable\s)?(Specialized\s|Professional\s)?(Killstreak\s)?/
+// const prices = require('./prices.json')
 
-const prices = require('./prices.json')
+// const Backpacktf = require('./backpacktf.js')
+// const backpacktf = new Backpacktf(process.env.BACKPACKTF_KEY, process.env.BACKPACKTF_TOKEN)
 
-const Backpacktf = require('./backpacktf.js')
-const backpacktf = new Backpacktf(process.env.BACKPACKTF_KEY, process.env.BACKPACKTF_TOKEN)
+// backpacktf.getListings()
+//     .then(res => {
+//         const { listings } = res
+//         const bad = Object.keys(prices).filter(item => {
+//             return !listings.map(listing => listing.item.name).includes(item) && prices[item].active && !prices[item].isCurrency
+//         })
+//         console.log(bad)
+//     })
 
-const search = Object.assign({
-    item: item.market_hash_name.replace(bptfSearchRegex, ''),
-    fold: 1,
-    steamid: process.env.STEAMID,
-    intent: 'buy'
-}, prices[item.market_hash_name].filters)
+const regex = /^(The\s|Strange\s|Non-Craftable\s|Genuine\s)/
 
-backpacktf.searchClassifieds(search)
-    .then(({buy: buyListings}) => {
-        console.log(buyListings.listings[0].id)
-    })
+console.log('Strange Genuine Incredible'.replace(regex, ''))
