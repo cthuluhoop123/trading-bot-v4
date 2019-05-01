@@ -436,31 +436,33 @@ async function bumpListings() {
                     }
                 ])
             } catch (err) {
-                console.error('Error when creating listings in bumpListings()', err)
+                console.error('Error when creating buy listing in bumpListings()', err)
             }
+
+            try {
+                const selling = inventory.find(inventoryItem => {
+                    return prices[item] && prices[item].craftable === craftable(inventoryItem)
+                })
+
+                if (selling) {
+                    await backpacktf.createListings([
+                        {
+                            intent: 1,
+                            id: item.id,
+                            details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Selling for: ${prices[item.market_hash_name].sell.keys} key(s) + ${scrapToRef(prices[item.market_hash_name].sell.metal)} ref!`,
+                            currencies: {
+                                keys: prices[item.market_hash_name].sell.keys,
+                                metal: scrapToRef(prices[item.market_hash_name].sell.metal)
+                            }
+                        }
+                    ])
+                }
+            } catch (err) {
+                console.error('Could not create sell listing in bumpListings()', err)
+            }
+
         }
         await sleep(500)
-    }
-
-    try {
-        const selling = inventory.filter(item => {
-            return prices[item.market_hash_name] && prices[item.market_hash_name].craftable === craftable(item)
-        })
-
-        for (let item of selling) {
-            bulkListings.push({
-                intent: 1,
-                id: item.id,
-                details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Selling for: ${prices[item.market_hash_name].sell.keys} key(s) + ${scrapToRef(prices[item.market_hash_name].sell.metal)} ref!`,
-                currencies: {
-                    keys: prices[item.market_hash_name].sell.keys,
-                    metal: scrapToRef(prices[item.market_hash_name].sell.metal)
-                }
-            })
-        }
-
-    } catch (err) {
-        console.error('Could not get inventory during bumpListing()', err)
     }
 
 
