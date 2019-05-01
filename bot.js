@@ -448,11 +448,11 @@ async function bumpListings() {
                     await backpacktf.createListings([
                         {
                             intent: 1,
-                            id: item.id,
-                            details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Selling for: ${prices[item.market_hash_name].sell.keys} key(s) + ${scrapToRef(prices[item.market_hash_name].sell.metal)} ref!`,
+                            id: selling.id,
+                            details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Selling for: ${prices[selling.market_hash_name].sell.keys} key(s) + ${scrapToRef(prices[selling.market_hash_name].sell.metal)} ref!`,
                             currencies: {
-                                keys: prices[item.market_hash_name].sell.keys,
-                                metal: scrapToRef(prices[item.market_hash_name].sell.metal)
+                                keys: prices[selling.market_hash_name].sell.keys,
+                                metal: scrapToRef(prices[selling.market_hash_name].sell.metal)
                             }
                         }
                     ])
