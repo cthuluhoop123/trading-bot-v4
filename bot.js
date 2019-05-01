@@ -312,7 +312,7 @@ async function undercutBackpacktf(item) {
     const buyListings = bptfListings.buy.listings.filter(automaticFilter).map(populateCurrency).filter(verifiedListing)
     const sellListings = bptfListings.sell.listings.filter(automaticFilter).map(populateCurrency).filter(verifiedListing)
 
-    if (sellListings.length === 0 || buyListings.length === 0) { continue }
+    if (sellListings.length === 0 || buyListings.length === 0) { return }
 
     if (sellListings[0].currencies.keys > buyListings[0].currencies.keys || sellListings[0].currencies.keys === buyListings[0].currencies.keys && sellListings[0].currencies.metal >= buyListings[0].currencies.metal) {
 
