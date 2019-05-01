@@ -24,7 +24,6 @@ const request = require('superagent')
 
 let history = require('./history.json')
 let prices = require('./prices.json')
-let initialPriceMatch = false
 
 const community = new SteamCommunity()
 
@@ -293,13 +292,9 @@ function getInventory(fresh = false) {
     })
 }
 
-async function undercutBackpacktf() {
-    console.log(info('Undercutting backpacktf.'))
-
+async function undercutBackpacktf(item) {
     decache('./prices.json')
     prices = require('./prices.json')
-
-    const pricedItems = getNonCurrencyItems()
 
     try {
         const currencies = await backpacktf.iGetCurrencies()
@@ -308,86 +303,79 @@ async function undercutBackpacktf() {
         console.error('Could not get key price in undercutBackpacktf()', err)
     }
 
-    for (let item of pricedItems) {
-        const search = Object.assign({
-            item: item.replace(bptfSearchRegex, ''),
-            fold: 1
-        }, prices[item].filters)
+    const search = Object.assign({
+        item: item.replace(bptfSearchRegex, ''),
+        fold: 1
+    }, prices[item].filters)
 
-        const bptfListings = await backpacktf.searchClassifieds(search)
-        const buyListings = bptfListings.buy.listings.filter(automaticFilter).map(populateCurrency).filter(verifiedListing)
-        const sellListings = bptfListings.sell.listings.filter(automaticFilter).map(populateCurrency).filter(verifiedListing)
+    const bptfListings = await backpacktf.searchClassifieds(search)
+    const buyListings = bptfListings.buy.listings.filter(automaticFilter).map(populateCurrency).filter(verifiedListing)
+    const sellListings = bptfListings.sell.listings.filter(automaticFilter).map(populateCurrency).filter(verifiedListing)
 
-        if (sellListings.length === 0 || buyListings.length === 0) { continue }
+    if (sellListings.length === 0 || buyListings.length === 0) { continue }
 
-        if (sellListings[0].currencies.keys > buyListings[0].currencies.keys || sellListings[0].currencies.keys === buyListings[0].currencies.keys && sellListings[0].currencies.metal >= buyListings[0].currencies.metal) {
+    if (sellListings[0].currencies.keys > buyListings[0].currencies.keys || sellListings[0].currencies.keys === buyListings[0].currencies.keys && sellListings[0].currencies.metal >= buyListings[0].currencies.metal) {
 
-            prices[item].active = true
+        prices[item].active = true
 
-            const highestBuyPrice = { keys: buyListings[0].currencies.keys, metal: refToScrap(buyListings[0].currencies.metal) }
-            const lowestSellPrice = { keys: sellListings[0].currencies.keys, metal: refToScrap(sellListings[0].currencies.metal) }
+        const highestBuyPrice = { keys: buyListings[0].currencies.keys, metal: refToScrap(buyListings[0].currencies.metal) }
+        const lowestSellPrice = { keys: sellListings[0].currencies.keys, metal: refToScrap(sellListings[0].currencies.metal) }
 
-            const contestingBuyBots = buyListings.map(getTopListings)
-            const contestingSellBots = sellListings.map(getTopListings)
+        const contestingBuyBots = buyListings.map(getTopListings)
+        const contestingSellBots = sellListings.map(getTopListings)
 
-            const topBuyList = contestingBuyBots.filter(filterTopListings)
-            const topSellList = contestingSellBots.filter(filterTopListings)
+        const topBuyList = contestingBuyBots.filter(filterTopListings)
+        const topSellList = contestingSellBots.filter(filterTopListings)
 
-            if (keyPrice && (lowestSellPrice.keys > highestBuyPrice.keys || lowestSellPrice.keys === highestBuyPrice.keys && lowestSellPrice.metal - highestBuyPrice.metal > 2)) {
+        if (keyPrice && (lowestSellPrice.keys > highestBuyPrice.keys || lowestSellPrice.keys === highestBuyPrice.keys && lowestSellPrice.metal - highestBuyPrice.metal > 2)) {
 
-                if (topBuyList.length >= 5) {
-                    const targetPrice = refToScrap(keyPrice) * highestBuyPrice.keys + highestBuyPrice.metal
-                    const overcutPrice = scrapToRef(targetPrice + 1)
-                    const overcutKeys = overcutPrice / keyPrice
-                    const overcutMetal = refToScrap(roundRef((overcutKeys - Math.trunc(overcutKeys)) * keyPrice))
+            if (topBuyList.length >= 5) {
+                const targetPrice = refToScrap(keyPrice) * highestBuyPrice.keys + highestBuyPrice.metal
+                const overcutPrice = scrapToRef(targetPrice + 1)
+                const overcutKeys = overcutPrice / keyPrice
+                const overcutMetal = refToScrap(roundRef((overcutKeys - Math.trunc(overcutKeys)) * keyPrice))
 
-                    prices[item].buy.metal = overcutMetal
-                    prices[item].buy.keys = Math.trunc(overcutKeys)
-                } else {
-                    prices[item].buy.metal = highestBuyPrice.metal
-                    prices[item].buy.keys = highestBuyPrice.keys
-                }
-                if (topSellList.length >= 5) {
-                    const targetPrice = refToScrap(keyPrice) * lowestSellPrice.keys + lowestSellPrice.metal
-                    const undercutPrice = scrapToRef(targetPrice - 1)
-                    const undercutKeys = undercutPrice / keyPrice
-                    const undercutMetal = refToScrap(roundRef((undercutKeys - Math.trunc(undercutKeys)) * keyPrice))
-
-                    prices[item].sell.metal = undercutMetal
-                    prices[item].sell.keys = Math.trunc(undercutKeys)
-                } else {
-                    prices[item].sell.metal = lowestSellPrice.metal
-                    prices[item].sell.keys = lowestSellPrice.keys
-                }
-
-
+                prices[item].buy.metal = overcutMetal
+                prices[item].buy.keys = Math.trunc(overcutKeys)
             } else {
-
-                prices[item].sell.metal = lowestSellPrice.metal
-                prices[item].sell.keys = lowestSellPrice.keys
-
                 prices[item].buy.metal = highestBuyPrice.metal
                 prices[item].buy.keys = highestBuyPrice.keys
             }
+            if (topSellList.length >= 5) {
+                const targetPrice = refToScrap(keyPrice) * lowestSellPrice.keys + lowestSellPrice.metal
+                const undercutPrice = scrapToRef(targetPrice - 1)
+                const undercutKeys = undercutPrice / keyPrice
+                const undercutMetal = refToScrap(roundRef((undercutKeys - Math.trunc(undercutKeys)) * keyPrice))
+
+                prices[item].sell.metal = undercutMetal
+                prices[item].sell.keys = Math.trunc(undercutKeys)
+            } else {
+                prices[item].sell.metal = lowestSellPrice.metal
+                prices[item].sell.keys = lowestSellPrice.keys
+            }
+
 
         } else {
-            prices[item].active = false
+
+            prices[item].sell.metal = lowestSellPrice.metal
+            prices[item].sell.keys = lowestSellPrice.keys
+
+            prices[item].buy.metal = highestBuyPrice.metal
+            prices[item].buy.keys = highestBuyPrice.keys
         }
 
-
-        try {
-            fs.writeFileSync('./prices.json', JSON.stringify(prices))
-        } catch (err) {
-            console.error('Could not save prices.json after undercutting', err)
-        }
-
-        await sleep(500)
+    } else {
+        prices[item].active = false
     }
-    console.log(info('Done undercutting backpacktf.'))
+
+    try {
+        fs.writeFileSync('./prices.json', JSON.stringify(prices))
+    } catch (err) {
+        console.error('Could not save prices.json after undercutting', err)
+    }
 }
 
 async function bumpListings() {
-
     console.log(info('Bumping listings...'))
 
     decache('./prices.json')
@@ -395,16 +383,6 @@ async function bumpListings() {
 
     let inventory
     let backpacktfListings
-
-    if (!initialPriceMatch) {
-        console.log(info('Starting initial pricematching.'))
-        try {
-            await undercutBackpacktf()
-        } catch (err) {
-            console.error('Error in initial pricematch:', err)
-        }
-        initialPriceMatch = true
-    }
 
     try {
         inventory = await getInventory(true)
@@ -428,34 +406,40 @@ async function bumpListings() {
 
     const pricedItems = getNonCurrencyItems()
 
-    const bulkListings = []
-    const deleteListings = []
-
     for (let item of pricedItems) {
-
+        await undercutBackpacktf(item)
         const inInventory = inventory.filter(inventoryItem => inventoryItem.market_hash_name === item && craftable(inventoryItem) === prices[item].craftable).length
 
         if (!prices[item].active || inInventory >= prices[item].stock) {
             const itemListing = backpacktfListings.listings.find(listing => listing.item.name === item)
-
-            if (itemListing) { deleteListings.push(itemListing.id) }
-
-        } else {
-
-            const bptfFilter = Object.assign(prices[item].filters, { craftable: prices[item].filters.craftable === -1 ? 0 : 1 })
-            bulkListings.push({
-                intent: 0,
-                item: Object.assign({
-                    item_name: item.replace(bptfListingRegex, ''),
-                }, bptfFilter),
-                details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Buying for: ${prices[item].buy.keys} key(s) + ${scrapToRef(prices[item].buy.metal)} ref! Stock: ${inInventory}/${prices[item].stock}!`,
-                currencies: {
-                    keys: prices[item].buy.keys,
-                    metal: scrapToRef(prices[item].buy.metal)
+            if (itemListing) {
+                try {
+                    await backpacktf.deleteListings([itemListing.id])
+                } catch (err) {
+                    console.error('Error when deleting listings in bumpListings()', err)
                 }
-            })
+            }
+        } else {
+            const bptfFilter = Object.assign(prices[item].filters, { craftable: prices[item].filters.craftable === -1 ? 0 : 1 })
+            try {
+                await backpacktf.createListings([
+                    {
+                        intent: 0,
+                        item: Object.assign({
+                            item_name: item.replace(bptfListingRegex, ''),
+                        }, bptfFilter),
+                        details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Buying for: ${prices[item].buy.keys} key(s) + ${scrapToRef(prices[item].buy.metal)} ref! Stock: ${inInventory}/${prices[item].stock}!`,
+                        currencies: {
+                            keys: prices[item].buy.keys,
+                            metal: scrapToRef(prices[item].buy.metal)
+                        }
+                    }
+                ])
+            } catch (err) {
+                console.error('Error when creating listings in bumpListings()', err)
+            }
         }
-
+        await sleep(500)
     }
 
     try {
@@ -480,26 +464,7 @@ async function bumpListings() {
     }
 
 
-    try {
-        await backpacktf.deleteListings(deleteListings)
-    } catch (err) {
-        console.error('Error when deleting listings in bumpListings()', err)
-    }
-
-    try {
-        await backpacktf.createListings(bulkListings)
-    } catch (err) {
-        console.error('Error when creating listings in bumpListings()', err)
-    }
-
     console.log(info('Bumped listings.'))
-    undercutBackpacktfTimeout = setTimeout(async () => {
-        try {
-            await undercutBackpacktf()
-        } catch (err) {
-            console.error('Error undercutting backpacktf:', err)
-        }
-    }, 1000 * 60 * 30 - Object.keys(pricedItems).length * 1000)
     bumpListingTimeout = setTimeout(bumpListings, 1000 * 60 * 30)
 }
 
