@@ -438,30 +438,27 @@ async function bumpListings() {
             } catch (err) {
                 console.error('Error when creating buy listing in bumpListings()', err)
             }
-
-            try {
-                const selling = inventory.find(inventoryItem => {
-                    return prices[item] && prices[item].craftable === craftable(inventoryItem)
-                })
-
-                if (selling) {
-                    await backpacktf.createListings([
-                        {
-                            intent: 1,
-                            id: selling.id,
-                            details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Selling for: ${prices[selling.market_hash_name].sell.keys} key(s) + ${scrapToRef(prices[selling.market_hash_name].sell.metal)} ref!`,
-                            currencies: {
-                                keys: prices[selling.market_hash_name].sell.keys,
-                                metal: scrapToRef(prices[selling.market_hash_name].sell.metal)
-                            }
-                        }
-                    ])
-                }
-            } catch (err) {
-                console.error('Could not create sell listing in bumpListings()', err)
-            }
-
         }
+
+        try {
+            const selling = inventory.find(inventoryItem => item === inventoryItem.market_hash_name && prices[item].craftable === craftable(inventoryItem))
+            if (selling) {
+                await backpacktf.createListings([
+                    {
+                        intent: 1,
+                        id: selling.id,
+                        details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Selling for: ${prices[item].sell.keys} key(s) + ${scrapToRef(prices[item].sell.metal)} ref!`,
+                        currencies: {
+                            keys: prices[item].sell.keys,
+                            metal: scrapToRef(prices[item].sell.metal)
+                        }
+                    }
+                ])
+            }
+        } catch (err) {
+            console.error('Could not create sell listing in bumpListings()', err)
+        }
+
         await sleep(500)
     }
 
