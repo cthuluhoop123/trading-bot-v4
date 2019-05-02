@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const fs = require('fs')
-const decache = require('decache')
+const { decache } = require('./util.js')
 
 const chalk = require('chalk')
 const warn = chalk.keyword('orange')

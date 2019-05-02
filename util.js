@@ -13,5 +13,11 @@ module.exports = {
             if (sentMessage.guild.me.hasPermission('MANAGE_MESSAGES')) { await sentMessage.clearReactions() }
         })
         return sentMessage
+    },
+    decache(path) {
+        const mod = require.cache[require.resolve(path)]
+        delete require.cache[require.resolve(path)]
+        const index = mod.parent.children.indexOf(mod)
+        if (index !== -1) { mod.parent.children.splice(index, 1) }
     }
 }
