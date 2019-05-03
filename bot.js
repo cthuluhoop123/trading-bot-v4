@@ -193,7 +193,7 @@ manager.on('newOffer', async offer => {
             }
         }
     } else {
-        await declineOffer(offer, 'Took too much/didnt pay enough.')
+        await declineOffer(offer, `Took too much/didnt pay enough. ID: ${offer.id} | Giving: ${itemsToGiveValue.keys} keys ${scrapToRef(itemsToGiveValue.metal)} ref | Receiving: ${itemsToReceiveValue.keys} keys ${scrapToRef(itemsToReceiveValue.metal)} ref`)
     }
 })
 
