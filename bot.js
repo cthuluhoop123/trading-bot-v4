@@ -181,11 +181,9 @@ manager.on('newOffer', async offer => {
     const itemsToGiveValue = calculatePrice(offer.itemsToGive, 'sell')
     const itemsToReceiveValue = calculatePrice(offer.itemsToReceive, 'buy')
 
-    if (itemsToReceiveValue.keys > itemsToGiveValue.keys && (itemsToReceiveValue.keys * refToScrap(keyPrice) + itemsToReceiveValue.metal) > (itemsToGiveValue.keys * refToScrap(keyPrice) + itemsToGiveValue.metal) || (itemsToReceiveValue.keys === itemsToGiveValue.keys && itemsToReceiveValue.metal >= itemsToGiveValue.metal)) {
+    if ((itemsToReceiveValue.keys * refToScrap(keyPrice) + itemsToReceiveValue.metal) > (itemsToGiveValue.keys * refToScrap(keyPrice) + itemsToGiveValue.metal)) {
         try {
-
             await acceptOffer(offer)
-
         } catch (err) {
             //todo
             if (err.message !== 'Not Logged In') {
