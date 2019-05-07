@@ -252,7 +252,7 @@ function calculatePrice(items, intent) {
             return accumulator
         }
 
-        if (intent === 'sell' && (!prices[currentValue.market_hash_name] || craftable(currentValue) !== prices[currentValue.market_hash_name].craftable)) {
+        if (intent === 'sell' && (!prices[currentValue.market_hash_name] || prices[currentValue.market_hash_name].craftable !== craftable(currentValue))) {
             accumulator.metal = accumulator.metal + 9999
             accumulator.keys = accumulator.keys + 9999
             return accumulator
