@@ -51,29 +51,17 @@ let keyPrice
 client.logOn(logOnOptions)
 
 tf2.on('backpackLoaded', async () => {
-    try {
-        await craftChange()
-    } catch (err) {
-        console.error('Error crafting change in backpackLoaded', err)
-    }
+    await craftChange().catch(err => console.error('Error crafting change in backpackLoaded', err))
     tf2.sortBackpack(4)
 })
 
 tf2.on('itemRemoved', async () => {
-    try {
-        await craftChange()
-    } catch (err) {
-        console.error('Error crafting change in itemRemoved', err)
-    }
+    await craftChange().catch(err => console.error('Error crafting change in itemRemoved', err))
     tf2.sortBackpack(4)
 })
 
 tf2.on('itemAcquired', async () => {
-    try {
-        await craftChange()
-    } catch (err) {
-        console.error('Error crafting change in itemAcquired', err)
-    }
+    await craftChange().catch(err => console.error('Error crafting change in itemAcquired', err))
     tf2.sortBackpack(4)
 })
 
@@ -105,11 +93,7 @@ client.on('webSession', (sessionID, cookies) => {
         }
         console.log(info('Got API key'))
 
-        try {
-            await getInventory()
-        } catch (e) {
-            console.error('Could not get inventory in webSession event', e)
-        }
+        await getInventory().catch(err => console.error('Could not get inventory in webSession event', err))
 
         community.setCookies(cookies)
 
@@ -182,14 +166,11 @@ manager.on('newOffer', async offer => {
     const itemsToReceiveValue = calculatePrice(offer.itemsToReceive, 'buy')
 
     if ((itemsToReceiveValue.keys * refToScrap(keyPrice) + itemsToReceiveValue.metal) >= (itemsToGiveValue.keys * refToScrap(keyPrice) + itemsToGiveValue.metal)) {
-        try {
-            await acceptOffer(offer)
-        } catch (err) {
-            //todo
+        await acceptOffer(offer).catch(err => {
             if (err.message !== 'Not Logged In') {
                 console.error(err)
             }
-        }
+        })
     } else {
         await declineOffer(offer, `Took too much/didnt pay enough. ID: ${offer.id} | Giving: ${itemsToGiveValue.keys} keys ${scrapToRef(itemsToGiveValue.metal)} ref | Receiving: ${itemsToReceiveValue.keys} keys ${scrapToRef(itemsToReceiveValue.metal)} ref`)
     }
@@ -365,7 +346,6 @@ async function undercutBackpacktf(item) {
     } else {
         prices[item].active = false
     }
-
     try {
         fs.writeFileSync('./prices.json', JSON.stringify(prices))
     } catch (err) {
@@ -405,7 +385,7 @@ async function bumpListings() {
     const pricedItems = getNonCurrencyItems()
 
     for (let item of pricedItems) {
-        await undercutBackpacktf(item)
+        await undercutBackpacktf(item).catch(err => console.error('Could not undercut during bumpListings()', err))
         const inInventory = inventory.filter(inventoryItem => inventoryItem.market_hash_name === item && craftable(inventoryItem) === prices[item].craftable).length
 
         if (!prices[item].active || inInventory >= prices[item].stock) {
@@ -575,11 +555,7 @@ async function acceptConfirmation(offer) {
 
                         const { buy: buyListings } = await backpacktf.searchClassifieds(search)
                         if (buyListings.listings.length) {
-                            try {
-                                await backpacktf.deleteListings([buyListings.listings[0].id])
-                            } catch (err) {
-                                console.error('Error deleting listing:', err)
-                            }
+                            await backpacktf.deleteListings([buyListings.listings[0].id]).catch(err => console.error('Error deleting listing:', err))
                         }
                     }
                 } catch (err) {
