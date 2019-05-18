@@ -210,6 +210,19 @@ function declineOffer(offer, reason) {
                 return
             }
             console.log(warn(`Denied an offer.`, reason))
+            client.getPersonas([offer.partner], async (personas) => {
+                await request
+                    .post(`http://localhost:${process.env.WEBHOOKPORT}/tradeDeclined`)
+                    .send({
+                        id: offer.id,
+                        partner: offer.partner.getSteamID64(),
+                        itemsToGive: offer.itemsToGive,
+                        itemsToReceive: offer.itemsToReceive,
+                        persona: personas[offer.partner.getSteamID64()],
+                        reason
+                    })
+                    .catch(err => console.error(err))
+            })
             resolve(true)
         })
     })
@@ -568,19 +581,16 @@ async function acceptConfirmation(offer) {
         fs.writeFileSync('./history.json', JSON.stringify(history))
 
         client.getPersonas([offer.partner], async (personas) => {
-            try {
-                await request
-                    .post(`http://localhost:${process.env.WEBHOOKPORT}/tradeAccepted`)
-                    .send({
-                        id: offer.id,
-                        partner: offer.partner.getSteamID64(),
-                        itemsToGive: offer.itemsToGive,
-                        itemsToReceive: offer.itemsToReceive,
-                        persona: personas[offer.partner.getSteamID64()]
-                    })
-            } catch (err) {
-                console.error(err)
-            }
+            await request
+                .post(`http://localhost:${process.env.WEBHOOKPORT}/tradeAccepted`)
+                .send({
+                    id: offer.id,
+                    partner: offer.partner.getSteamID64(),
+                    itemsToGive: offer.itemsToGive,
+                    itemsToReceive: offer.itemsToReceive,
+                    persona: personas[offer.partner.getSteamID64()]
+                })
+                .catch(err => console.error(err))
         })
     })
 }

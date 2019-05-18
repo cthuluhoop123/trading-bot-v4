@@ -80,6 +80,31 @@ app.post('/tradeAccepted', async (req, res) => {
     }
 })
 
+app.post('/tradeDeclined', async (req, res) => {
+    const { id, partner, itemsToGive, itemsToReceive, persona, reason } = req.body
+
+    const truncatedItemsToGive = itemsToGive.reduce(truncater, {})
+    const truncatedItemsToReceive = itemsToReceive.reduce(truncater, {})
+    const tradePartner = persona.player_name
+
+    try {
+
+        const embed = new RichEmbed()
+            .setAuthor(`Declined trade with ${tradePartner} (${partner})`, undefined, `https://steamcommunity.com/profiles/${partner}`)
+            .addField('Gave', stringifyTruncatedObject(truncatedItemsToGive))
+            .addField('Received', stringifyTruncatedObject(truncatedItemsToReceive))
+            .addField('Reason', reason)
+            .setColor(0xee0000)
+            .setTimestamp()
+
+        await client.guilds.get('553557830074892299').channels.find(channel => channel.name === 'trade-declined').send({ embed })
+        res.sendStatus(200)
+    } catch (err) {
+        console.error(err)
+        res.status(500).send(err)
+    }
+})
+
 
 function truncater(accumulator, current) {
     !accumulator[current.market_hash_name]
