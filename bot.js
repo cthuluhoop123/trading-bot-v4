@@ -15,7 +15,7 @@ const SteamTotp = require('steam-totp');
 const TeamFortress2 = require('tf2');
 const tf2 = new TeamFortress2(client);
 
-const admins = ['76561198201013523', '76561198886011470', '76561198364117183'];
+const { admins, ignoreUndercut } = require('./config.js');
 
 const Backpacktf = require('./backpacktf.js');
 const backpacktf = new Backpacktf(process.env.BACKPACKTF_KEY, process.env.BACKPACKTF_TOKEN);
@@ -482,7 +482,7 @@ function roundRef(ref) {
 }
 
 function automaticFilter(listing) {
-    if (listing.automatic && listing.automatic === 1 && listing.steamid !== process.env.STEAMID) {
+    if (listing.automatic && listing.automatic === 1 && listing.steamid !== process.env.STEAMID && !ignoreUndercut.includes(listing.steamid)) {
         return true;
     }
     return false;
