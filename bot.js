@@ -191,8 +191,9 @@ function acceptOffer(offer) {
             acceptConfirmation(offer);
 
             console.log(info('Accepted an offer.'));
+            const itemsImGiving = offer.itemsToGive.map(give => give.id);
             inventoryCache = inventoryCache.filter(item => {
-                return offer.itemsToGive.map(give => give.id).includes(item.id) === false;
+                return itemsImGiving.includes(item.id) === false;
             }).concat(offer.itemsToReceive);
             resolve(status);
         })
@@ -276,7 +277,7 @@ function getInventory(fresh = false) {
                 reject(err);
             }
             inventoryCache = inventory;
-            resolve(inventory);
+            resolve(inventoryCache);
         });
     });
 }
