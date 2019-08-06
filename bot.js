@@ -40,7 +40,7 @@ const logOnOptions = {
 };
 
 const bptfListingRegex = /^(The\s|Strange\s|Non-Craftable\s|Genuine\s)/;
-const bptfSearchRegex = /^(The\s|Strange\s|Non-Craftable\s\Genuine\s)?(Specialized\s|Professional\s)?(Killstreak\s)?/;
+const bptfSearchRegex = /^(The\s|Strange\s|Non-Craftable\s\Genuine\s)?(Specialized\s|Professional\s)?(Killstreak\s)?(Australium\s)?/;
 
 let tradeQueue = [];
 
