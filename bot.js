@@ -193,7 +193,7 @@ function acceptOffer(offer) {
             console.log(info('Accepted an offer.'));
             const itemsImGiving = offer.itemsToGive.map(give => give.id);
             inventoryCache = inventoryCache.filter(item => {
-                return itemsImGiving.includes(item.id) === false;
+                return !itemsImGiving.includes(item.id);
             }).concat(offer.itemsToReceive);
             resolve(status);
         })
