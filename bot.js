@@ -166,11 +166,17 @@ manager.on('newOffer', async offer => {
     const itemsToReceiveValue = calculatePrice(offer.itemsToReceive, 'buy');
 
     if (itemsToReceiveValue.keys >= itemsToGiveValue.keys && itemsToReceiveValue.metal >= itemsToGiveValue.metal) {
-        await acceptOffer(offer).catch(err => {
-            if (err.message !== 'Not Logged In') {
-                console.error(err);
-            }
-        });
+        const partnerId = offer.partner.getSteamID64();
+        const reputation = await backpacktf.checkReputation(partnerId);
+        if (reputation.users[partnerId].bans && reputation.users[partnerId].bans.steamrep_scammer) {
+            await declineOffer(offer, `User is marked as scammer on steamrep`);
+        } else {
+            await acceptOffer(offer).catch(err => {
+                if (err.message !== 'Not Logged In') {
+                    console.error(err);
+                }
+            });
+        }
     } else {
         await declineOffer(offer, `Took too much/didnt pay enough. ID: ${offer.id} | Giving: ${itemsToGiveValue.keys} keys ${scrapToRef(itemsToGiveValue.metal)} ref | Receiving: ${itemsToReceiveValue.keys} keys ${scrapToRef(itemsToReceiveValue.metal)} ref`);
     }
@@ -589,19 +595,6 @@ async function acceptConfirmation(offer) {
 
     });
 }
-
-function getUserDetails(offer) {
-    return new Promise((resolve, reject) => {
-        offer.getUserDetails((err, me, them) => {
-            if (err) {
-                reject(err);
-                return;
-            }
-            resolve(them);
-        });
-    });
-}
-
 
 async function craftChange() {
     if (tf2.backpack === undefined) { return; }

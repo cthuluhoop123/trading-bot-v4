@@ -1,10 +1,10 @@
-const request = require('superagent')
-const url = 'https://backpack.tf'
+const request = require('superagent');
+const url = 'https://backpack.tf';
 
 class Backpacktf {
     constructor(key, token) {
-        this.key = key
-        this.token = token
+        this.key = key;
+        this.token = token;
     }
 
     iGetCurrencies() {
@@ -15,10 +15,10 @@ class Backpacktf {
                     key: this.key
                 })
                 .then(res => {
-                    resolve(res.body)
+                    resolve(res.body);
                 })
-                .catch(reject)
-        })
+                .catch(reject);
+        });
     }
 
     searchClassifieds(options) {
@@ -30,10 +30,25 @@ class Backpacktf {
                     ...options
                 })
                 .then(res => {
-                    resolve(res.body)
+                    resolve(res.body);
                 })
-                .catch(reject)
-        })
+                .catch(reject);
+        });
+    }
+
+    checkReputation(steamId) {
+        return new Promise((resolve, reject) => {
+            request
+                .get(url + '/api/users/info/v1')
+                .query({
+                    key: this.key,
+                    steamids: steamId instanceof Array ? steamId.join(',') : steamId
+                })
+                .then(res => {
+                    resolve(res.body);
+                })
+                .catch(reject);
+        });
     }
 
     createListings(listings) {
@@ -45,10 +60,10 @@ class Backpacktf {
                     listings
                 })
                 .then(res => {
-                    resolve(res.body)
+                    resolve(res.body);
                 })
-                .catch(reject)
-        })
+                .catch(reject);
+        });
     }
 
     deleteListings(listings) {
@@ -60,10 +75,10 @@ class Backpacktf {
                     listing_ids: listings
                 })
                 .then(res => {
-                    resolve(res.body)
+                    resolve(res.body);
                 })
-                .catch(reject)
-        })
+                .catch(reject);
+        });
     }
 
     getListings(options) {
@@ -75,10 +90,10 @@ class Backpacktf {
                     ...options
                 })
                 .then(res => {
-                    resolve(res.body)
+                    resolve(res.body);
                 })
-                .catch(reject)
-        })
+                .catch(reject);
+        });
     }
 
     refreshBackpack() {
@@ -86,10 +101,10 @@ class Backpacktf {
             request
                 .get(url + '/_inventory/' + process.env.STEAMID + '?time=&source=steam')
                 .then(res => {
-                    resolve(res.body)
+                    resolve(res.body);
                 })
-                .catch(reject)
-        })
+                .catch(reject);
+        });
     }
 
     startHeartbeat() {
@@ -101,16 +116,16 @@ class Backpacktf {
                     automatic: 'all'
                 })
                 .then(res => {
-                    resolve(res.body)
+                    resolve(res.body);
                 })
-                .catch(reject)
-            this.heartbeatTimeout = setTimeout(this.startHeartbeat.bind(this), 1000 * 91)
-        })
+                .catch(reject);
+            this.heartbeatTimeout = setTimeout(this.startHeartbeat.bind(this), 1000 * 91);
+        });
     }
 
     stopHeartbeat() {
-        clearTimeout(this.heartbeatTimeout)
+        clearTimeout(this.heartbeatTimeout);
     }
 }
 
-module.exports = Backpacktf
+module.exports = Backpacktf;
