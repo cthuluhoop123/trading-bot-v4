@@ -9,5 +9,5 @@ const partnerId = '76561198853853135';
 async function main() {
     const reputation = await backpacktf.checkReputation(partnerId);
     console.log(reputation.users);
-    console.log(typeof reputation.users[partnerId].bans.steamrep_scammer);
+    console.log(reputation.users[partnerId].bans && reputation.users[partnerId].bans.steamrep_scammer);
 } main();
