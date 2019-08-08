@@ -15,7 +15,7 @@ const SteamTotp = require('steam-totp');
 const TeamFortress2 = require('tf2');
 const tf2 = new TeamFortress2(client);
 
-const { admins, ignoreUndercut } = require('./config.js');
+const { admins, ignoreUndercut, steamGroup } = require('./config.js');
 
 const Backpacktf = require('./backpacktf.js');
 const backpacktf = new Backpacktf(process.env.BACKPACKTF_KEY, process.env.BACKPACKTF_TOKEN);
@@ -127,8 +127,21 @@ client.on('webSession', (sessionID, cookies) => {
         if (!bumpListingTimeout) {
             bumpListings();
         }
-    })
-})
+    });
+});
+
+client.on('friendRelationship', function (steamID, relationship) {
+    const steamID64 = steamID.getSteamID64();
+    if (relationship === SteamUser.EFriendRelationship.Friend) {
+        console.log('I am now friends with ' + steamID64);
+        community.inviteUserToGroup(steamID64, steamGroup);
+    }
+    if (relationship === SteamUser.EFriendRelationship.RequestRecipient) {
+        console.log(steamID64 + ' added me');
+        addFriend(steamID64).catch(() => { });
+    }
+});
+
 
 manager.on('newOffer', async offer => {
 
@@ -584,6 +597,8 @@ async function acceptConfirmation(offer) {
 
         fs.writeFileSync('./history.json', JSON.stringify(history));
 
+        if (steamGroup) { addFriend(offer.partner.getSteamID64()).catch(() => { }); }
+
         request
             .post(`http://localhost:${process.env.WEBHOOKPORT}/newTrade`)
             .send({
@@ -593,6 +608,20 @@ async function acceptConfirmation(offer) {
             .catch(err => console.error(err));
 
 
+    });
+}
+
+function addFriend(steamID64) {
+    return new Promise((resolve, reject) => {
+        client.addFriend(steamID64, function (err) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            const randomUserToUnfriend = Object.keys(client.myFriends).filter(id => !admins.includes(id) && steamID64 !== id);
+            client.removeFriend(randomUserToUnfriend[0]);
+            resolve();
+        });
     });
 }
 
