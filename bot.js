@@ -207,13 +207,14 @@ function acceptOffer(offer) {
                 return;
             }
 
-            acceptConfirmation(offer);
 
             console.log(info('Accepted an offer.'));
             const itemsImGiving = offer.itemsToGive.map(give => give.id);
             inventoryCache = inventoryCache.filter(item => {
                 return !itemsImGiving.includes(item.id);
             }).concat(offer.itemsToReceive);
+            
+            acceptConfirmation(offer);
             resolve(status);
         })
     })
@@ -565,7 +566,7 @@ async function acceptConfirmation(offer) {
             }
         });
 
-        offer.itemsToReceive.forEach(async item => {
+        offer.itemsToReceive.forEach(async (item, i, receiving) => {
             if (prices[item.market_hash_name] && !prices[item.market_hash_name].isCurrency) {
                 history.trades.push({
                     market_hash_name: item.market_hash_name,
