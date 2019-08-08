@@ -405,6 +405,25 @@ async function bumpListings() {
         await undercutBackpacktf(item).catch(err => console.error('Could not undercut during bumpListings()', err));
         const inInventory = inventory.filter(inventoryItem => inventoryItem.market_hash_name === item && craftable(inventoryItem) === prices[item].craftable).length;
 
+        try {
+            const selling = inventory.find(inventoryItem => item === inventoryItem.market_hash_name && prices[item].craftable === craftable(inventoryItem));
+            if (selling) {
+                await backpacktf.createListings([
+                    {
+                        intent: 1,
+                        id: selling.id,
+                        details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Selling for: ${prices[item].sell.keys} key(s) + ${scrapToRef(prices[item].sell.metal)} ref!`,
+                        currencies: {
+                            keys: prices[item].sell.keys,
+                            metal: scrapToRef(prices[item].sell.metal)
+                        }
+                    }
+                ]);
+            }
+        } catch (err) {
+            console.error('Could not create sell listing in bumpListings()', err);
+        }
+
         if (!prices[item].active || inInventory >= prices[item].stock) {
             const itemListing = backpacktfListings.listings.find(listing => listing.item.name === item);
             if (itemListing) {
@@ -433,25 +452,6 @@ async function bumpListings() {
             } catch (err) {
                 console.error('Error when creating buy listing in bumpListings()', err)
             }
-        }
-
-        try {
-            const selling = inventory.find(inventoryItem => item === inventoryItem.market_hash_name && prices[item].craftable === craftable(inventoryItem));
-            if (selling) {
-                await backpacktf.createListings([
-                    {
-                        intent: 1,
-                        id: selling.id,
-                        details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Selling for: ${prices[item].sell.keys} key(s) + ${scrapToRef(prices[item].sell.metal)} ref!`,
-                        currencies: {
-                            keys: prices[item].sell.keys,
-                            metal: scrapToRef(prices[item].sell.metal)
-                        }
-                    }
-                ]);
-            }
-        } catch (err) {
-            console.error('Could not create sell listing in bumpListings()', err);
         }
 
         await sleep(500);
