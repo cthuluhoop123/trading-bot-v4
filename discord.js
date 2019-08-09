@@ -93,7 +93,7 @@ app.post('/tradeDeclined', async (req, res) => {
             .setAuthor(`Declined trade with ${tradePartner} (${partner})`, undefined, `https://steamcommunity.com/profiles/${partner}`)
             .addField('Gave', stringifyTruncatedObject(truncatedItemsToGive))
             .addField('Received', stringifyTruncatedObject(truncatedItemsToReceive))
-            .addField('Reason', reason)
+            .addField('Reason', reason.replace(/\s\|\s/g, '\n'))
             .setColor(0xee0000)
             .setTimestamp();
 
