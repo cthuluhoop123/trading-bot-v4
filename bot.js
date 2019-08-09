@@ -134,7 +134,9 @@ client.on('friendRelationship', function (steamID, relationship) {
     const steamID64 = steamID.getSteamID64();
     if (relationship === SteamUser.EFriendRelationship.Friend) {
         console.log('I am now friends with ' + steamID64);
-        community.inviteUserToGroup(steamID64, steamGroup);
+        if (steamGroup) {
+            community.inviteUserToGroup(steamID64, steamGroup);
+        }
     }
     if (relationship === SteamUser.EFriendRelationship.RequestRecipient) {
         console.log(steamID64 + ' added me');
