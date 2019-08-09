@@ -213,7 +213,7 @@ function acceptOffer(offer) {
             inventoryCache = inventoryCache.filter(item => {
                 return !itemsImGiving.includes(item.id);
             }).concat(offer.itemsToReceive);
-            
+
             acceptConfirmation(offer);
             resolve(status);
         })
@@ -232,15 +232,19 @@ function declineOffer(offer, reason) {
             }
             console.log(warn(`Denied an offer.`, reason));
 
-            request
-                .post(`http://localhost:${process.env.WEBHOOKPORT}/newTrade`)
-                .send({
-                    botOffer: offer,
-                    bot: process.env.STEAMID,
-                    extra: reason
-                })
-                .catch(err => console.error(err));
-
+            client.getPersonas([offer.partner], personas => {
+                request
+                    .post(`http://localhost:${process.env.WEBHOOKPORT}/tradeDeclined`)
+                    .send({
+                        id: offer.id,
+                        partner: offer.partner.getSteamID64(),
+                        itemsToGive: offer.itemsToGive,
+                        itemsToReceive: offer.itemsToReceive,
+                        persona: personas[offer.partner.getSteamID64()],
+                        reason
+                    })
+                    .catch(err => console.error(err));
+            });
             resolve(true);
         });
     });
@@ -600,13 +604,17 @@ async function acceptConfirmation(offer) {
 
         if (steamGroup) { addFriend(offer.partner.getSteamID64()).catch(() => { }); }
 
-        request
-            .post(`http://localhost:${process.env.WEBHOOKPORT}/newTrade`)
-            .send({
-                botOffer: offer,
-                bot: process.env.STEAMID
-            })
-            .catch(err => console.error(err));
+        client.getPersonas([offer.partner], personas => {
+            request
+                .post(`http://localhost:${process.env.WEBHOOKPORT}/tradeAccepted`)
+                .send({
+                    id: offer.id,
+                    partner: offer.partner.getSteamID64(),
+                    itemsToGive: offer.itemsToGive,
+                    itemsToReceive: offer.itemsToReceive,
+                    persona: personas[offer.partner.getSteamID64()]
+                }).catch(err => console.error(err));
+        });
 
 
     });

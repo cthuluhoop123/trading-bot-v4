@@ -72,7 +72,7 @@ app.post('/tradeAccepted', async (req, res) => {
             .setColor(0x00ee00)
             .setTimestamp();
 
-        await client.guilds.get('553557830074892299').channels.find(channel => channel.name === 'trade-logs').send({ embed });
+        await client.guilds.get(process.env.DISCORDSERVER).channels.find(channel => channel.name === 'trade-accepted').send({ embed });
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
@@ -97,7 +97,7 @@ app.post('/tradeDeclined', async (req, res) => {
             .setColor(0xee0000)
             .setTimestamp();
 
-        await client.guilds.get('553557830074892299').channels.find(channel => channel.name === 'trade-declined').send({ embed });
+        await client.guilds.get(process.env.DISCORDSERVER).channels.find(channel => channel.name === 'trade-declined').send({ embed });
         res.sendStatus(200);
     } catch (err) {
         console.error(err);
