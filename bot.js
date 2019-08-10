@@ -420,8 +420,8 @@ async function bumpListings() {
     }
 
     const pricedItems = getNonCurrencyItems();
-    const buyListings = [];
-    for (const item of pricedItems) {
+
+    for (let item of pricedItems) {
         await undercutBackpacktf(item).catch(err => console.error('Could not undercut during bumpListings()', err));
         const inInventory = inventory.filter(inventoryItem => inventoryItem.market_hash_name === item && craftable(inventoryItem) === prices[item].craftable).length;
 
@@ -455,24 +455,28 @@ async function bumpListings() {
             }
         } else {
             const bptfFilter = Object.assign(prices[item].filters, { craftable: prices[item].filters.craftable === -1 ? 0 : 1 })
-            buyListings.push(
-                {
-                    intent: 0,
-                    item: Object.assign({
-                        item_name: item.replace(bptfListingRegex, ''),
-                    }, bptfFilter),
-                    details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Buying for: ${prices[item].buy.keys} key(s) + ${scrapToRef(prices[item].buy.metal)} ref! Stock: ${inInventory}/${prices[item].stock}!`,
-                    currencies: {
-                        keys: prices[item].buy.keys,
-                        metal: scrapToRef(prices[item].buy.metal)
+            try {
+                await backpacktf.createListings([
+                    {
+                        intent: 0,
+                        item: Object.assign({
+                            item_name: item.replace(bptfListingRegex, ''),
+                        }, bptfFilter),
+                        details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Buying for: ${prices[item].buy.keys} key(s) + ${scrapToRef(prices[item].buy.metal)} ref! Stock: ${inInventory}/${prices[item].stock}!`,
+                        currencies: {
+                            keys: prices[item].buy.keys,
+                            metal: scrapToRef(prices[item].buy.metal)
+                        }
                     }
-                }
-            );
+                ])
+            } catch (err) {
+                console.error('Error when creating buy listing in bumpListings()', err)
+            }
         }
+
         await sleep(500);
     }
-    console.log('Finished listing all sell items');
-    await backpacktf.createListings(buyListings).catch(console.error);
+
 
     console.log(info('Bumped listings.'));
     bumpListingTimeout = setTimeout(bumpListings, 1000 * 60 * 30);
@@ -553,7 +557,6 @@ async function acceptConfirmation(offer) {
                 setTimeout(acceptConfirmation, 1500, offer);
                 return;
             }
-            console.log(err.message);
             return;
         }
 
