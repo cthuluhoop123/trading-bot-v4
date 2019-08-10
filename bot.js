@@ -557,6 +557,7 @@ async function acceptConfirmation(offer) {
                 setTimeout(acceptConfirmation, 1500, offer);
                 return;
             }
+            console.log(err.message);
             return;
         }
 
