@@ -339,7 +339,7 @@ async function undercutBackpacktf(item) {
 
         if (keyPrice && (lowestSellPrice.keys > highestBuyPrice.keys || lowestSellPrice.keys === highestBuyPrice.keys && lowestSellPrice.metal - highestBuyPrice.metal > 2)) {
 
-            if (topBuyList.length >= 4) {
+            if (topBuyList.length >= 5) {
                 const targetPrice = refToScrap(keyPrice) * highestBuyPrice.keys + highestBuyPrice.metal;
                 const overcutPrice = scrapToRef(targetPrice + 1);
                 const overcutKeys = overcutPrice / keyPrice;
@@ -351,7 +351,7 @@ async function undercutBackpacktf(item) {
                 prices[item].buy.metal = highestBuyPrice.metal;
                 prices[item].buy.keys = highestBuyPrice.keys;
             }
-            if (topSellList.length >= 4) {
+            if (topSellList.length >= 5) {
                 const targetPrice = refToScrap(keyPrice) * lowestSellPrice.keys + lowestSellPrice.metal;
                 const undercutPrice = scrapToRef(targetPrice - 1);
                 const undercutKeys = undercutPrice / keyPrice;
