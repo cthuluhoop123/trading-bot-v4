@@ -160,9 +160,7 @@ manager.on('newOffer', async offer => {
     try {
         const inventory = await getInventory();
         const overstock = offer.itemsToReceive.some(receivingItem => {
-            if (!prices[receivingItem.market_hash_name]) {
-                return false;
-            }
+            if (!prices[receivingItem.market_hash_name]) { return false; }
             const amountInInventory = inventory.filter(item => item.market_hash_name === receivingItem.market_hash_name && craftable(item) === craftable(receivingItem)).length;
             const amountReceiving = offer.itemsToReceive.filter(item => item.market_hash_name === receivingItem.market_hash_name && craftable(item) === craftable(receivingItem)).length;
             if (amountInInventory + amountReceiving > prices[receivingItem.market_hash_name].stock) {
