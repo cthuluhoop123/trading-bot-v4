@@ -323,8 +323,18 @@ async function undercutBackpacktf(item) {
     }, prices[item].filters);
 
     const bptfListings = await backpacktf.searchClassifieds(search);
-    const buyListings = bptfListings.buy.listings.filter(automaticFilter).map(populateCurrency).filter(verifiedListing);
-    const sellListings = bptfListings.sell.listings.filter(automaticFilter).map(populateCurrency).filter(verifiedListing);
+    const buyListings = bptfListings.buy.listings.filter(automaticFilter).map(populateCurrency).filter(verifiedListing).sort((a, b) => {
+        const key = refToScrap(keyPrice);
+        const aValue = key * a.currencies.keys + a.currencies.metal;
+        const bValue = key * b.currencies.keys + b.currencies.metal;
+        return bValue - aValue;
+    });
+    const sellListings = bptfListings.sell.listings.filter(automaticFilter).map(populateCurrency).filter(verifiedListing).sort((a, b) => {
+        const key = refToScrap(keyPrice);
+        const aValue = key * a.currencies.keys + a.currencies.metal;
+        const bValue = key * b.currencies.keys + b.currencies.metal;
+        return aValue - bValue;
+    });;
 
     if (sellListings.length === 0 || buyListings.length === 0) { return; }
 
