@@ -421,7 +421,8 @@ async function bumpListings() {
 
     try {
         backpacktfListings = await backpacktf.getListings({
-            intent: 0
+            intent: 0,
+            inactive: 1
         });
     } catch (err) {
         console.error('Unable to get backpack listings during bumpListings()', err);
