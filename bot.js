@@ -555,7 +555,7 @@ function verifiedListing(listing, i, originalListing) {
 
 async function acceptConfirmation(offer) {
     community.acceptConfirmationForObject(process.env.IDENTITY_SECRET, offer.id, err => {
-        if (err && err.message !== 'There was an error accepting this trade offer.  Please try again later. (28)') {
+        if (err) {
             if (err.message === 'Could not act on confirmation') {
                 if (offer.retries && offer.retries > 2) {
                     return;
@@ -566,7 +566,7 @@ async function acceptConfirmation(offer) {
                 setTimeout(acceptConfirmation, 1500, offer);
                 return;
             }
-            console.log(err.message);
+            console.error(err.message);
             return;
         }
 
