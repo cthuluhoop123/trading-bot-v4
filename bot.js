@@ -205,7 +205,7 @@ manager.on('newOffer', async offer => {
 function finalizeOffer(offer) {
     return new Promise((resolve, reject) => {
         offer.getUserDetails((err, me, them) => {
-            if (err.message === 'Not Logged In') {
+            if (err && err.message === 'Not Logged In') {
                 finalizeQueue.push(offer);
                 reject(err);
                 return;
