@@ -42,7 +42,9 @@ const logOnOptions = {
 const bptfListingRegex = /^(The\s|Strange\s|Non-Craftable\s|Genuine\s)/;
 const bptfSearchRegex = /^(The\s|Strange\s|Non-Craftable\s\Genuine\s)?(Specialized\s|Professional\s)?(Killstreak\s)?(Australium\s)?/;
 
-let tradeQueue = [];
+const tradeQueue = [];
+const finalizeQueue = [];
+
 
 let inventoryCache;
 let bumpListingTimeout;
@@ -101,29 +103,34 @@ client.on('webSession', (sessionID, cookies) => {
         client.setPersona(SteamUser.Steam.EPersonaState.Online);
         client.gamesPlayed(440);
 
-        if (tradeQueue.length > 0) {
-            const acceptQueue = tradeQueue.filter(trade => trade.action === 'accept');
-            const declineQueue = tradeQueue.filter(trade => trade.action === 'decline');
+        const acceptQueue = tradeQueue.filter(trade => trade.action === 'accept');
+        const declineQueue = tradeQueue.filter(trade => trade.action === 'decline');
 
-            for (let trade of acceptQueue) {
-                try {
-                    await acceptOffer(trade.offer);
-                    tradeQueue = tradeQueue.filter(original => original.id !== trade.id);
-                } catch (err) {
-                    console.error('Error accepting trade offer from tradeQueue', err);
-                }
+        for (const trade of acceptQueue) {
+            try {
+                await acceptOffer(trade.offer);
+                tradeQueue.splice(tradeQueue.indexOf(trade), 1);
+            } catch (err) {
+                console.error('Error accepting trade offer from tradeQueue', err);
             }
-
-            for (let trade of declineQueue) {
-                try {
-                    await declineOffer(trade.offer, trade.reason);
-                    tradeQueue = tradeQueue.filter(original => original.id !== trade.id);
-                } catch (err) {
-                    console.error('Error declining trade offer from tradeQueue', err);
-                }
-            }
-
         }
+
+        for (const trade of declineQueue) {
+            try {
+                await declineOffer(trade.offer, trade.reason);
+                tradeQueue.splice(tradeQueue.indexOf(trade), 1);
+            } catch (err) {
+                console.error('Error declining trade offer from tradeQueue', err);
+            }
+        }
+
+        for (const offer of finalizeQueue) {
+            try {
+                await finalizeOffer(offer);
+                finalizeOffer.splice(finalizeOffer.indexOf(offer), 1);
+            } catch (err) { console.error('Error finalizing trade from finalizeQueue.', err); }
+        }
+
         if (!bumpListingTimeout) {
             bumpListings();
         }
@@ -184,7 +191,7 @@ manager.on('newOffer', async offer => {
         if (reputation.users[partnerId].bans && reputation.users[partnerId].bans.steamrep_scammer) {
             await declineOffer(offer, `User is marked as scammer on steamrep`);
         } else {
-            await acceptOffer(offer).catch(err => {
+            await finalizeOffer(offer).catch(err => {
                 if (err.message !== 'Not Logged In') {
                     console.error(err);
                 }
@@ -194,6 +201,27 @@ manager.on('newOffer', async offer => {
         await declineOffer(offer, `Took too much/didnt pay enough. ID: ${offer.id} | Giving: ${itemsToGiveValue.keys} keys ${scrapToRef(itemsToGiveValue.metal)} ref | Receiving: ${itemsToReceiveValue.keys} keys ${scrapToRef(itemsToReceiveValue.metal)} ref`);
     }
 });
+
+function finalizeOffer(offer) {
+    return new Promise((resolve, reject) => {
+        offer.getUserDetails((err, me, them) => {
+            if (err.message === 'Not Logged In') {
+                finalizeQueue.push(offer);
+                reject(err);
+                return;
+            }
+            if (them.escrowDays > 7) {
+                declineOffer(offer, 'Trade would be escrowed for more than 7 days.').catch(err => console.error('Could not deny escrowed offer.', err));
+                return;
+            }
+            acceptOffer(offer).catch(err => {
+                if (err.message !== 'Not Logged In') {
+                    console.error('Could not accept offer in finalizeOffer', err);
+                }
+            });
+        });
+    });
+}
 
 function acceptOffer(offer) {
     return new Promise((resolve, reject) => {
@@ -206,8 +234,6 @@ function acceptOffer(offer) {
                 reject(err);
                 return;
             }
-
-
             console.log(info('Accepted an offer.'));
             const itemsImGiving = offer.itemsToGive.map(give => give.id);
             inventoryCache = inventoryCache.filter(item => {
