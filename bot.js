@@ -39,8 +39,8 @@ const logOnOptions = {
     twoFactorCode: SteamTotp.generateAuthCode(process.env.SHARED_SECRET)
 };
 
-const bptfListingRegex = /^(The\s|Strange\s|Non-Craftable\s|Genuine\s)/;
-const bptfSearchRegex = /^(The\s|Strange\s|Non-Craftable\s\Genuine\s)?(Specialized\s|Professional\s)?(Killstreak\s)?(Australium\s)?/;
+const bptfListingRegex = /^(The\s|Strange(?!\sPart)\s|Non-Craftable\s|Genuine\s|Vintage\s|Collector's\s)/;
+const bptfSearchRegex = /^(The\s|Strange(?!\sPart)\s|Non-Craftable\s\Genuine\s|Vintage\s|Collector's\s)?(Specialized\s|Professional\s)?(Killstreak\s)?(Australium\s)?/;
 
 const tradeQueue = [];
 const finalizeQueue = [];
@@ -287,8 +287,7 @@ function craftable(item) {
 }
 
 function calculatePrice(items, intent) {
-
-    const shit = items.reduce((accumulator, currentValue) => {
+    return items.reduce((accumulator, currentValue) => {
 
         if (intent === 'buy' && (!prices[currentValue.market_hash_name] || prices[currentValue.market_hash_name].craftable !== craftable(currentValue))) {
             return accumulator;
@@ -306,8 +305,6 @@ function calculatePrice(items, intent) {
         return accumulator;
 
     }, { keys: 0, metal: 0 });
-    return shit;
-
 }
 
 function getInventory(fresh = false) {

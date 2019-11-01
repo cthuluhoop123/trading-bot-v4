@@ -5,17 +5,11 @@ const bptf = new Backpacktf(process.env.BACKPACKTF_KEY, process.env.BACKPACKTF_T
 
 const bptfSearchRegex = /^(The\s|Strange\s|Non-Craftable\s\Genuine\s)?(Specialized\s|Professional\s)?(Killstreak\s)?(Australium\s)?/;
 
-const urls = [
-    "https://backpack.tf/classifieds?item=Lightning%20Lid&quality=6&tradable=1&craftable=1&australium=-1&killstreak_tier=0",
-    "https://backpack.tf/classifieds?item=Croaking%20Hazard&quality=11&tradable=1&craftable=1&australium=-1&killstreak_tier=0",
-    "https://backpack.tf/classifieds?item=Firefly&quality=6&tradable=1&craftable=1&australium=-1&killstreak_tier=0",
-    "https://backpack.tf/classifieds?item=Festive%20Huntsman&quality=6&tradable=1&craftable=1&australium=-1&killstreak_tier=1",
-    "https://backpack.tf/classifieds?item=Scattergun&quality=11&tradable=1&craftable=1&australium=-1&killstreak_tier=1"
-];
+const items = [];
 
 Promise.all(
-    urls.map(url => {
-        return generatePrice(url).catch(null);
+    items.map(item => {
+        return generatePrice(item).catch(null);
     })
 ).then(prices => {
     const priceFile = JSON.stringify(prices.filter(Boolean).reduce((acc, cur) => {
@@ -52,7 +46,7 @@ async function generatePrice(url) {
             },
             stock: 1,
             isCurrency: false,
-            craftable: itemData.craftable === '1' ? true : false,
+            craftable: 1,
             filters: {
                 ...itemData
             },
@@ -75,7 +69,7 @@ function verifiedListing(listing, i, originalListing) {
             return true;
         }
     });
-    return occurences.length >= 3;
+    return occurences.length >= 2;
 }
 
 function automaticFilter(listing) {
