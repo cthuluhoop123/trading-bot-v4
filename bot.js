@@ -381,10 +381,7 @@ async function undercutBackpacktf(item) {
                 prices[item].buy.keys = nextBestBuyCurrency.currencies.keys || 0;
             }
         }
-        return;
-    }
-
-    if (sellListings[0].currencies.keys > buyListings[0].currencies.keys || sellListings[0].currencies.keys === buyListings[0].currencies.keys && sellListings[0].currencies.metal >= buyListings[0].currencies.metal) {
+    } else if (sellListings[0].currencies.keys > buyListings[0].currencies.keys || sellListings[0].currencies.keys === buyListings[0].currencies.keys && sellListings[0].currencies.metal >= buyListings[0].currencies.metal) {
 
         prices[item].active = true;
 
