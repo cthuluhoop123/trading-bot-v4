@@ -359,7 +359,30 @@ async function undercutBackpacktf(item) {
         return aValue - bValue;
     });;
 
-    if (sellListings.length === 0 || buyListings.length === 0) { return; }
+    if (sellListings.length === 0 || buyListings.length === 0) {
+        const nextBestSellCurrency = bptfListings.sell.listings[0];
+        const nextBestBuyCurrency = bptfListings.buy.listings[0];
+        console.log('Could not find good price for', item);
+
+        if (nextBestSellCurrency) {
+            const nextBestSellPrice = evaluateFullPrice(nextBestSellCurrency.currencies);
+            const myCurrentSellPrice = evaluateFullPrice({ metal: prices[item].sell.metal, keys: prices[item].sell.keys });
+            if (nextBestSellPrice > myCurrentSellPrice) {
+                prices[item].sell.metal = nextBestSellCurrency.currencies.metal || 0;
+                prices[item].sell.keys = nextBestSellCurrency.currencies.keys || 0;
+            }
+        }
+
+        if (nextBestBuyCurrency) {
+            const nextBestBuyPrice = evaluateFullPrice(nextBestBuyCurrency.currencies);
+            const myCurrentBuyPrice = evaluateFullPrice({ metal: prices[item].buy.metal, keys: prices[item].buy.keys });
+            if (nextBestBuyPrice < myCurrentBuyPrice) {
+                prices[item].buy.metal = nextBestBuyCurrency.currencies.metal || 0;
+                prices[item].buy.keys = nextBestBuyCurrency.currencies.keys || 0;
+            }
+        }
+        return;
+    }
 
     if (sellListings[0].currencies.keys > buyListings[0].currencies.keys || sellListings[0].currencies.keys === buyListings[0].currencies.keys && sellListings[0].currencies.metal >= buyListings[0].currencies.metal) {
 
@@ -403,7 +426,6 @@ async function undercutBackpacktf(item) {
 
 
         } else {
-
             prices[item].sell.metal = lowestSellPrice.metal;
             prices[item].sell.keys = lowestSellPrice.keys;
 
@@ -486,24 +508,24 @@ async function bumpListings() {
                 }
             }
         } else {
-            // const bptfFilter = Object.assign(prices[item].filters, { craftable: prices[item].filters.craftable === -1 ? 0 : 1 })
-            // try {
-            //     await backpacktf.createListings([
-            //         {
-            //             intent: 0,
-            //             item: Object.assign({
-            //                 item_name: item.replace(bptfListingRegex, ''),
-            //             }, bptfFilter),
-            //             details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Buying for: ${prices[item].buy.keys} key(s) + ${scrapToRef(prices[item].buy.metal)} ref! Stock: ${inInventory}/${prices[item].stock}!`,
-            //             currencies: {
-            //                 keys: prices[item].buy.keys,
-            //                 metal: scrapToRef(prices[item].buy.metal)
-            //             }
-            //         }
-            //     ])
-            // } catch (err) {
-            //     console.error('Error when creating buy listing in bumpListings()', err)
-            // }
+            const bptfFilter = Object.assign(prices[item].filters, { craftable: prices[item].filters.craftable === -1 ? 0 : 1 })
+            try {
+                await backpacktf.createListings([
+                    {
+                        intent: 0,
+                        item: Object.assign({
+                            item_name: item.replace(bptfListingRegex, ''),
+                        }, bptfFilter),
+                        details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Buying for: ${prices[item].buy.keys} key(s) + ${scrapToRef(prices[item].buy.metal)} ref! Stock: ${inInventory}/${prices[item].stock}!`,
+                        currencies: {
+                            keys: prices[item].buy.keys,
+                            metal: scrapToRef(prices[item].buy.metal)
+                        }
+                    }
+                ])
+            } catch (err) {
+                console.error('Error when creating buy listing in bumpListings()', err)
+            }
         }
 
         await sleep(500);
@@ -667,6 +689,10 @@ function addFriend(steamID64) {
             resolve();
         });
     });
+}
+
+function evaluateFullPrice(currencies) {
+    return refToScrap(keyPrice) * (currencies.keys || 0) + refToScrap(currencies.metal || 0);
 }
 
 async function craftChange() {
