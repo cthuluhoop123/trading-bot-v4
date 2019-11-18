@@ -360,8 +360,8 @@ async function undercutBackpacktf(item) {
     });;
 
     if (sellListings.length === 0 || buyListings.length === 0) {
-        const nextBestSellCurrency = bptfListings.sell.listings[0];
-        const nextBestBuyCurrency = bptfListings.buy.listings[0];
+        const nextBestSellCurrency = bptfListings.sell.listings.find(automaticFilter);
+        const nextBestBuyCurrency = bptfListings.buy.listings.find(automaticFilter);
         console.log('Could not find good price for', item);
 
         if (nextBestSellCurrency) {
