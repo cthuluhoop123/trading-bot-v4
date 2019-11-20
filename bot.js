@@ -611,11 +611,11 @@ function verifiedListing(listing, i, originalListing) {
             return true;
         }
     });
-    if (myCurrentPrice >= 9 * 45) {
+    if (myCurrentPrice >= 9 * 50) {
         //for higher tiered items, prices are verified as long as they dont deviate too far away from the current.
         const candidatePrice = evaluateFullPrice(listing.currencies);
         const deviation = Math.abs(candidatePrice - myCurrentPrice);
-        return deviation <= 9;
+        return deviation <= 45;
     } else {
         return occurences.length >= 3;
     }
