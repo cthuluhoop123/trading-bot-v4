@@ -381,6 +381,7 @@ async function undercutBackpacktf(item) {
                 }
             }
         } else if (nextBestBuyCurrency) {
+            const myCurrentBuyPrice = evaluateFullPrice({ metal: prices[item].buy.metal, keys: prices[item].buy.keys });
             const nextBestBuyPrice = evaluateFullPrice(nextBestBuyCurrency.currencies);
             if (nextBestBuyPrice < myCurrentBuyPrice) {
                 prices[item].buy.metal = nextBestBuyCurrency.currencies.metal || 0;
@@ -388,6 +389,7 @@ async function undercutBackpacktf(item) {
             }
         } else if (nextBestSellCurrency) {
             const myCurrentSellPrice = evaluateFullPrice({ metal: prices[item].sell.metal, keys: prices[item].sell.keys });
+            const nextBestSellPrice = evaluateFullPrice(nextBestSellCurrency.currencies);
             if (nextBestSellPrice > myCurrentSellPrice) {
                 prices[item].sell.metal = nextBestSellCurrency.currencies.metal || 0;
                 prices[item].sell.keys = nextBestSellCurrency.currencies.keys || 0;
