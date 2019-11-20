@@ -614,8 +614,8 @@ function verifiedListing(listing, i, originalListing) {
     if (myCurrentPrice >= 9 * 45) {
         //for higher tiered items, prices are verified as long as they dont deviate too far away from the current.
         const candidatePrice = evaluateFullPrice(listing.currencies);
-        const deviation = Math.abs(candidatePrice - myCurrentPrice) / myCurrentPrice;
-        return deviation <= .05;
+        const deviation = Math.abs(candidatePrice - myCurrentPrice);
+        return deviation <= 9;
     } else {
         return occurences.length >= 3;
     }
