@@ -363,7 +363,6 @@ async function undercutBackpacktf(item) {
     if (sellListings.length === 0 || buyListings.length === 0) {
         const nextBestSellCurrency = bptfListings.sell.listings.find(automaticFilter);
         const nextBestBuyCurrency = bptfListings.buy.listings.find(automaticFilter);
-        console.log('Could not find good price for', item);
 
         if (nextBestSellCurrency && nextBestBuyCurrency) {
             const nextBestSellPrice = evaluateFullPrice(nextBestSellCurrency.currencies);
@@ -395,6 +394,8 @@ async function undercutBackpacktf(item) {
                 prices[item].sell.metal = refToScrap(nextBestSellCurrency.currencies.metal || 0);
                 prices[item].sell.keys = nextBestSellCurrency.currencies.keys || 0;
             }
+        } else {
+            console.log('Could not find good price for', item);
         }
 
     } else if (evaluateFullPrice(sellListings[0].currencies) >= evaluateFullPrice(buyListings[0].currencies)) {
