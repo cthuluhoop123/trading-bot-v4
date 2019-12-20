@@ -342,27 +342,27 @@ async function undercutBackpacktf(item) {
 
     const search = Object.assign({
         item: item.replace(bptfSearchRegex, ''),
-        fold: 1,
-        craftable: prices[item].craftable ? 1 : -1
+        fold: 1
     }, prices[item].filters);
 
     const bptfListings = await backpacktf.searchClassifieds(search);
     const buyListings = bptfListings.buy.listings.filter(automaticFilter).map(populateCurrency).filter(verifiedListing).sort((a, b) => {
         const key = refToScrap(keyPrice);
-        const aValue = key * a.currencies.keys + refToScrap(a.currencies.metal);
-        const bValue = key * b.currencies.keys + refToScrap(b.currencies.metal);
+        const aValue = key * a.currencies.keys + a.currencies.metal;
+        const bValue = key * b.currencies.keys + b.currencies.metal;
         return bValue - aValue;
     });
     const sellListings = bptfListings.sell.listings.filter(automaticFilter).map(populateCurrency).filter(verifiedListing).sort((a, b) => {
         const key = refToScrap(keyPrice);
-        const aValue = key * a.currencies.keys + refToScrap(a.currencies.metal);
-        const bValue = key * b.currencies.keys + refToScrap(b.currencies.metal);
+        const aValue = key * a.currencies.keys + a.currencies.metal;
+        const bValue = key * b.currencies.keys + b.currencies.metal;
         return aValue - bValue;
     });;
 
     if (sellListings.length === 0 || buyListings.length === 0) {
         const nextBestSellCurrency = bptfListings.sell.listings.find(automaticFilter);
         const nextBestBuyCurrency = bptfListings.buy.listings.find(automaticFilter);
+        console.log('Could not find good price for', item);
 
         if (nextBestSellCurrency && nextBestBuyCurrency) {
             const nextBestSellPrice = evaluateFullPrice(nextBestSellCurrency.currencies);
@@ -371,12 +371,12 @@ async function undercutBackpacktf(item) {
             if (nextBestSellPrice >= nextBestBuyPrice) {
                 const myCurrentSellPrice = evaluateFullPrice({ metal: prices[item].sell.metal, keys: prices[item].sell.keys });
                 if (nextBestSellPrice > myCurrentSellPrice) {
-                    prices[item].sell.metal = refToScrap(nextBestSellCurrency.currencies.metal || 0);
+                    prices[item].sell.metal = nextBestSellCurrency.currencies.metal || 0;
                     prices[item].sell.keys = nextBestSellCurrency.currencies.keys || 0;
                 }
                 const myCurrentBuyPrice = evaluateFullPrice({ metal: prices[item].buy.metal, keys: prices[item].buy.keys });
                 if (nextBestBuyPrice < myCurrentBuyPrice) {
-                    prices[item].buy.metal = refToScrap(nextBestBuyCurrency.currencies.metal || 0);
+                    prices[item].buy.metal = nextBestBuyCurrency.currencies.metal || 0;
                     prices[item].buy.keys = nextBestBuyCurrency.currencies.keys || 0;
                 }
             }
@@ -384,21 +384,19 @@ async function undercutBackpacktf(item) {
             const myCurrentBuyPrice = evaluateFullPrice({ metal: prices[item].buy.metal, keys: prices[item].buy.keys });
             const nextBestBuyPrice = evaluateFullPrice(nextBestBuyCurrency.currencies);
             if (nextBestBuyPrice < myCurrentBuyPrice) {
-                prices[item].buy.metal = refToScrap(nextBestBuyCurrency.currencies.metal || 0);
+                prices[item].buy.metal = nextBestBuyCurrency.currencies.metal || 0;
                 prices[item].buy.keys = nextBestBuyCurrency.currencies.keys || 0;
             }
         } else if (nextBestSellCurrency) {
             const myCurrentSellPrice = evaluateFullPrice({ metal: prices[item].sell.metal, keys: prices[item].sell.keys });
             const nextBestSellPrice = evaluateFullPrice(nextBestSellCurrency.currencies);
             if (nextBestSellPrice > myCurrentSellPrice) {
-                prices[item].sell.metal = refToScrap(nextBestSellCurrency.currencies.metal || 0);
+                prices[item].sell.metal = nextBestSellCurrency.currencies.metal || 0;
                 prices[item].sell.keys = nextBestSellCurrency.currencies.keys || 0;
             }
-        } else {
-            console.log('Could not find good price for', item);
         }
 
-    } else if (evaluateFullPrice(sellListings[0].currencies) >= evaluateFullPrice(buyListings[0].currencies)) {
+    } else if (sellListings[0].currencies.keys > buyListings[0].currencies.keys || sellListings[0].currencies.keys === buyListings[0].currencies.keys && sellListings[0].currencies.metal >= buyListings[0].currencies.metal) {
 
         prices[item].active = true;
 
@@ -604,22 +602,12 @@ function filterTopListings(bots, i, contesting) {
 }
 
 function verifiedListing(listing, i, originalListing) {
-    if (!prices[listing.item.name]) { return; }
-    const fromPriceGrid = prices[listing.item.name][listing.intent === 0 ? 'buy' : 'sell'];
-    const myCurrentPrice = refToScrap(keyPrice) * fromPriceGrid.keys + fromPriceGrid.metal;
     const occurences = originalListing.filter(buy => {
         if (listing.currencies.keys === buy.currencies.keys && listing.currencies.metal === buy.currencies.metal) {
             return true;
         }
     });
-    if (myCurrentPrice >= 9 * 50 && occurences.length >= 2) {
-        //for higher tiered items, prices are verified as long as they dont deviate too far away from the current.
-        const candidatePrice = evaluateFullPrice(listing.currencies);
-        const deviation = Math.abs(candidatePrice - myCurrentPrice);
-        return deviation <= 45;
-    } else {
-        return occurences.length >= 3;
-    }
+    return occurences.length >= 3;
 }
 
 async function acceptConfirmation(offer) {
