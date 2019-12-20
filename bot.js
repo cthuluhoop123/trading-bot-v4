@@ -519,24 +519,24 @@ async function bumpListings() {
                 }
             }
         } else {
-            const bptfFilter = Object.assign(prices[item].filters, { craftable: prices[item].filters.craftable === -1 ? 0 : 1 })
-            try {
-                await backpacktf.createListings([
-                    {
-                        intent: 0,
-                        item: Object.assign({
-                            item_name: item.replace(bptfListingRegex, ''),
-                        }, bptfFilter),
-                        details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Buying for: ${prices[item].buy.keys} key(s) + ${scrapToRef(prices[item].buy.metal)} ref! Stock: ${inInventory}/${prices[item].stock}!`,
-                        currencies: {
-                            keys: prices[item].buy.keys,
-                            metal: scrapToRef(prices[item].buy.metal)
-                        }
-                    }
-                ])
-            } catch (err) {
-                console.error('Error when creating buy listing in bumpListings()', err)
-            }
+            // const bptfFilter = Object.assign(prices[item].filters, { craftable: prices[item].filters.craftable === -1 ? 0 : 1 });
+            // try {
+            //     await backpacktf.createListings([
+            //         {
+            //             intent: 0,
+            //             item: Object.assign({
+            //                 item_name: item.replace(bptfListingRegex, ''),
+            //             }, bptfFilter),
+            //             details: `⚡[⇄] 24/7 TRADING BOT! // Send me a trade offer!⚡ Buying for: ${prices[item].buy.keys} key(s) + ${scrapToRef(prices[item].buy.metal)} ref! Stock: ${inInventory}/${prices[item].stock}!`,
+            //             currencies: {
+            //                 keys: prices[item].buy.keys,
+            //                 metal: scrapToRef(prices[item].buy.metal)
+            //             }
+            //         }
+            //     ]);
+            // } catch (err) {
+            //     console.error('Error when creating buy listing in bumpListings()', err)
+            // }
         }
 
         await sleep(500);
