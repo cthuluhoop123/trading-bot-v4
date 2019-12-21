@@ -538,8 +538,6 @@ async function bumpListings() {
             //     console.error('Error when creating buy listing in bumpListings()', err)
             // }
         }
-
-        await sleep(500);
     }
 
 

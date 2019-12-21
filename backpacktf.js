@@ -1,4 +1,13 @@
 const request = require('superagent');
+
+const Throttle = require('superagent-throttle');
+const throttle = new Throttle({
+    active: true,
+    rate: 1,
+    ratePer: 1000,
+    concurrent: 1
+});
+
 const url = 'https://backpack.tf';
 
 class Backpacktf {
@@ -25,6 +34,7 @@ class Backpacktf {
         return new Promise((resolve, reject) => {
             request
                 .get(url + '/api/classifieds/search/v1')
+                .use(throttle.plugin())
                 .query({
                     key: this.key,
                     ...options
