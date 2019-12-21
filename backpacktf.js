@@ -34,7 +34,7 @@ class Backpacktf {
         return new Promise((resolve, reject) => {
             request
                 .get(url + '/api/classifieds/search/v1')
-                .use(throttle.plugin())
+                .use(throttle.plugin('searchClassifieds'))
                 .query({
                     key: this.key,
                     ...options
@@ -65,6 +65,7 @@ class Backpacktf {
         return new Promise((resolve, reject) => {
             request
                 .post(url + '/api/classifieds/list/v1')
+                .use(throttle.plugin('createListings'))
                 .send({
                     token: this.token,
                     listings
@@ -80,6 +81,7 @@ class Backpacktf {
         return new Promise((resolve, reject) => {
             request
                 .delete(url + '/api/classifieds/delete/v1')
+                .use(throttle.plugin('deleteListings'))
                 .send({
                     token: this.token,
                     listing_ids: listings
