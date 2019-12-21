@@ -1,7 +1,19 @@
 const request = require('superagent');
 
 const Throttle = require('superagent-throttle');
-const throttle = new Throttle({
+const searchClassifiedsThrottle = new Throttle({
+    active: true,
+    rate: 1,
+    ratePer: 1000,
+    concurrent: 1
+});
+const createClassifiedsThrottle = new Throttle({
+    active: true,
+    rate: 1,
+    ratePer: 1000,
+    concurrent: 1
+});
+const deleteClassifiedsThrottle = new Throttle({
     active: true,
     rate: 1,
     ratePer: 1000,
@@ -34,7 +46,7 @@ class Backpacktf {
         return new Promise((resolve, reject) => {
             request
                 .get(url + '/api/classifieds/search/v1')
-                .use(throttle.plugin('searchClassifieds'))
+                .use(searchClassifiedsThrottle.plugin())
                 .query({
                     key: this.key,
                     ...options
@@ -65,7 +77,7 @@ class Backpacktf {
         return new Promise((resolve, reject) => {
             request
                 .post(url + '/api/classifieds/list/v1')
-                .use(throttle.plugin('createListings'))
+                .use(createClassifiedsThrottle.plugin())
                 .send({
                     token: this.token,
                     listings
@@ -81,7 +93,7 @@ class Backpacktf {
         return new Promise((resolve, reject) => {
             request
                 .delete(url + '/api/classifieds/delete/v1')
-                .use(throttle.plugin('deleteListings'))
+                .use(deleteClassifiedsThrottle.plugin())
                 .send({
                     token: this.token,
                     listing_ids: listings

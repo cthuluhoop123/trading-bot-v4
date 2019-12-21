@@ -333,13 +333,6 @@ async function undercutBackpacktf(item) {
     decache('./prices.json');
     prices = require('./prices.json');
 
-    try {
-        const currencies = await backpacktf.iGetCurrencies();
-        keyPrice = currencies.response.currencies.keys.price.value;
-    } catch (err) {
-        console.error('Could not get key price in undercutBackpacktf()', err);
-    }
-
     const search = Object.assign({
         item: item.replace(bptfSearchRegex, ''),
         fold: 1
@@ -473,6 +466,13 @@ async function bumpListings() {
         await backpacktf.refreshBackpack();
     } catch (err) {
         console.error('Could not refresh backpack.tf backpack in bumpListings()', err);
+    }
+
+    try {
+        const currencies = await backpacktf.iGetCurrencies();
+        keyPrice = currencies.response.currencies.keys.price.value;
+    } catch (err) {
+        console.error('Could not get key price in bumpListings()', err);
     }
 
     try {
